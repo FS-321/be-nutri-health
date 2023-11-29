@@ -1,19 +1,22 @@
 
 const jwt = require('jsonwebtoken')
 const getCookiesToken = require('./getCookiesToken')
+const sequelize = require('../sequelize-instance')
+const DataTypes = require('sequelize')
+const User = require('../../models/user')(sequelizze, DataTypes)
 require('dotenv').config()
 module.exports = {
-    authenticateUser: function (req, res, next) {
+    authenticateUser: async function (req, res, next) {
         try {
-            const { username, password } = req.body
+            const { email, password } = req.body
             // JANGAN LUPA MODEL GANTI !!!!!!!!!!!
-            const user = Model.findOne({ where: { username: username, password: password } })
+            const user = User.findOne({ where: { email, password } })
 
             if (!user) {
-                return  res.status(401).send({message:"username and password are invalid"})
+                return res.status(401).send({ message: "email and password are invalid" })
             }
 
-            next()
+            return user
         }
 
         catch (e) {
@@ -24,8 +27,8 @@ module.exports = {
     authenticateToken: function (req, res, next) {
         const secretKey = process.env.TOKENKEY
         const token = getCookiesToken(req)
-        
-        if(!token) return res.status(401).send({message:"Please login to acces this resource"})
+
+        if (!token) return res.status(401).send({ message: "Please login to acces this resource" })
 
         jwt.verify(token, secretKey, (error, decoded) => {
             if (error) {

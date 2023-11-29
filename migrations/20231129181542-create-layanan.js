@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nama_layanan: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
         allowNull: false
       },
       biaya: {

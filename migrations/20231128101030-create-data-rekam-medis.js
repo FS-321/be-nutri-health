@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('DataRekamMedis', {
+    await queryInterface.createTable('data_rekam_medis', {
       data_rekam_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,7 +31,7 @@ module.exports = {
           key: 'user_id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'CASCADE'
       },
       dokter_id: {
         type: Sequelize.INTEGER,
@@ -40,7 +40,7 @@ module.exports = {
           key: 'dokter_id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -53,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('DataRekamMedis');
+    await queryInterface.dropTable('data_rekam_medis');
   }
 };

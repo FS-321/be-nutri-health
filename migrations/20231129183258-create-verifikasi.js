@@ -2,20 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('poliklinik', {
-      poli_id: {
-        allowNull: false,
-        autoIncrement: true,
+    await queryInterface.createTable('verifikasi', {
+      user_id: {
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        references: {
+          model: 'User', 
+          key: 'user_id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      nama_poli: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      lokasi_gedung: {
-        type: Sequelize.STRING,
-        allowNull: false
+      verified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Polikliniks');
+    await queryInterface.dropTable('verifikasi');
   }
 };

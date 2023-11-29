@@ -31,7 +31,7 @@ module.exports = {
           key: 'user_id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'CASCADE'
       },
       dokter_id: {
         type: Sequelize.INTEGER,
@@ -40,7 +40,7 @@ module.exports = {
           key: 'dokter_id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

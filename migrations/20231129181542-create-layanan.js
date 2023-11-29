@@ -2,20 +2,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('poliklinik', {
-      poli_id: {
+    await queryInterface.createTable('layanan', {
+      layanan_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama_poli: {
-        type: Sequelize.STRING,
+      nama_layanan: {
+        type: Sequelize.STRING
         allowNull: false
       },
-      lokasi_gedung: {
-        type: Sequelize.STRING,
-        allowNull: false
+      biaya: {
+        type: Sequelize.DECIMAL
+      },
+      nama_dokter: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('poliklinik');
+    await queryInterface.dropTable('layanan');
   }
 };

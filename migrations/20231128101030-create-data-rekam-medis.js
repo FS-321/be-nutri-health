@@ -53,6 +53,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('DataRekamMedis');
+    await queryInterface.dropTable('data_rekam_medis');
   }
 };

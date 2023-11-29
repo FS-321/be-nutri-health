@@ -6,9 +6,10 @@ const User = require('../../../models/user')(sequelize, DataTypes)
 
 
 module.exports = function (req, res, next) {
+        console.log('ini register')
         try {
                 const registerForm = req.body
-                const status = User.create({ registerForm })
+                const status = User.create( registerForm )
 
                 if (!status) return res.status(401).send({ message: "Username or email already register" })
 

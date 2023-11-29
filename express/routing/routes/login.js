@@ -6,7 +6,13 @@ const loginRoutes = express.Router()
 
 
 loginRoutes.post('/login', (req, res, next) => {
-    const { email, password } = req.body
+    console.log('ini login router')
+    let email, password
+    try {
+        ({ email, password } = req.body)
+    } catch (e) {
+        return res.status(404).send({ message: "invalid body" })
+    }
     
     try {
         const result = user.findOne({ where: { email, password } })

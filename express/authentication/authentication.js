@@ -10,10 +10,10 @@ module.exports = {
             const user = Model.findOne({ where: { username: username, password: password } })
 
             if (!user) {
-                return  res.status(401).send({message:"username and password are invalid"})
+                return res.status(401).send({ message: "email and password are invalid" })
             }
 
-            next()
+            return user 
         }
 
         catch (e) {
@@ -24,8 +24,8 @@ module.exports = {
     authenticateToken: function (req, res, next) {
         const secretKey = process.env.TOKENKEY
         const token = getCookiesToken(req)
-        
-        if(!token) return res.status(401).send({message:"Please login to acces this resource"})
+
+        if (!token) return res.status(401).send({ message: "Please login to acces this resource" })
 
         jwt.verify(token, secretKey, (error, decoded) => {
             if (error) {

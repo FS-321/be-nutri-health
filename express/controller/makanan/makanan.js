@@ -2,7 +2,7 @@ const sequelize = require('../../sequelize-instance')
 const DataTypes = require('sequelize')
 const Makanan = require('../../../models/makanan')(sequelize, DataTypes)
 
-module.export = {
+module.exports = {
     async getAll(req, res) {
         const page = req.query.page || 1
         const pageSize = req.query.pageSize || 10
@@ -30,7 +30,7 @@ module.export = {
 
     async update(req, res) {
         const id = req.params.id
-        const data = req.body
+        const { gambar_makanan_url, data } = req.body
         try {
             const status = await Makanan.update(data, { where: {makanan_id: id} })
 
@@ -51,9 +51,21 @@ module.export = {
         } catch (e) {
             return res.status(500).send({ message: "something happen when deleting makanan" })
         }
+    },
+    
+    async create(req,res){
+        const form = req.body
+        
+        try{
+            const status = await Makanan.create(form)
+            
+            if(!status) return res.status(400).send({message:"invalid form"})
+            
+            return res.status(200).send({message:"creating makanan success"})
+        }catch(e){
+            return res.status(500).send({message:"something happen when creating Makanan"})
+        }
     }
-
-
 
 }
 

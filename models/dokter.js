@@ -5,9 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Dokter extends Model {
     static associate(models) {
+      
       Dokter.hasMany(models.JadwalPraktik, {
         foreignKey: 'dokter_id',
+        as:'JadwalPraktik'
       });
+      
       Dokter.belongsTo(models.Poliklinik, {
         foreignKey: 'poli_id',
       });

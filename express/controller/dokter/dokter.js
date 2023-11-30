@@ -1,19 +1,26 @@
 const sequelize = require('../../sequelize-instance')
 const DataTypes = require('sequelize')
-
-const Dokter = require('../../../models/dokter')(sequelize,DataTypes)
+const jadwalPraktik = require('../../../models/jadwalpraktik')(sequelize, DataTypes)
+const Dokter = require('../../../models/dokter')(sequelize, DataTypes)
 
 module.exports = {
     async getAll(req, res) {
-        const page = req.query.page || 1
-        const pageSize = req.query.pageSize || 10
+        const page = req.body.pages || 1
+        const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const dokter = await Dokter.findAll({offset,limit:pageSize})
+            const dokter = await Dokter.findAll({
+                offset, limit: pageSize,
+                // include: [{
+                //     model: jadwalPraktik,
+                //     as : "JadwalPraktik"
+                // }]
+            })
 
             return res.status(200).send(dokter)
 
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when fetching doctor" })
         }
     },
@@ -21,7 +28,7 @@ module.exports = {
     async getOne(req, res) {
         const id = req.params
         try {
-            const dokter = await Dokter.findOne({ where: { dokter_id : id } })
+            const dokter = await Dokter.findOne({ where: { dokter_id: id } })
 
             return res.status(200).send(dokter)
         } catch (e) {
@@ -33,7 +40,7 @@ module.exports = {
         const data = req.body
         const id = req.params.id
         try {
-            const status = await Dokter.update(data, { where: { dokter_id : id } })
+            const status = await Dokter.update(data, { where: { dokter_id: id } })
 
             if (!status) return res.status(404).send({ message: "doctor not found" })
 
@@ -47,7 +54,7 @@ module.exports = {
     async deleteOne(req, res) {
         const id = req.params.id
         try {
-            const status = await Dokter.destroy({ where: { dokter_id : id } })
+            const status = await Dokter.destroy({ where: { dokter_id: id } })
 
             if (!status) return res.status(404).send({ message: "doctor is not found" })
 

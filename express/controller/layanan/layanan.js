@@ -1,12 +1,12 @@
 const sequelize = require('../../sequelize-instance')
 const DataTypes = require('sequelize')
 
-const Layanan = require('../../../models/layanan')
+const Layanan = require('../../../models/layanan')(sequelize,DataTypes)
 
 module.exports = {
     async getAll(req, res) {
-        const page = req.query.page || 1
-        const pageSize = req.query.pageSize || 10
+        const page = req.body.pages || 1
+        const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
             const layanan = await Layanan.findAll({offset,limit:pageSize})

@@ -1,4 +1,4 @@
-const sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 require('dotenv').config()
 const db = process.env
 // module.exports = new sequelize({
@@ -9,7 +9,7 @@ const db = process.env
 //     password : db.DB_PASSWORD,
 //     database : db.DB_DATABASE
 // })
-module.exports = new sequelize({
+const sequelize = new Sequelize({
     dialect: 'mysql',
     host: "localhost",
     port : 3306,
@@ -17,3 +17,7 @@ module.exports = new sequelize({
     password : "admin",
     database :  "nutrihealth" 
 })
+
+sequelize.sync()
+
+module.exports = sequelize

@@ -5,12 +5,14 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('jadwal_praktik', [
       {
+        jadwal_id: 1,
         hari: 'Senin',
         mulai: '08:00',
         akhir: '12:00',
         dokter_id: 1, // Resuaikan dengan dokter_id dari tabel dokter
       },
       {
+        jadwal_id: 2,
         hari: 'Selasa',
         mulai: '13:00',
         akhir: '17:00',

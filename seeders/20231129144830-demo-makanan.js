@@ -5,6 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('makanan', [
       {
+        makanan_id: 1,
         nama_makanan: 'Nasi Putih',
         energi: 130, // asumsikan ini adalah kalori per porsi
         lemak: 0.3,
@@ -23,6 +24,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        makanan_id: 2,
         nama_makanan: 'Ayam Goreng',
         energi: 250,
         lemak: 15,

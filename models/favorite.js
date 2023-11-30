@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     favorite_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      allowNull: false
     },
     makanan_id: {
       type: DataTypes.INTEGER,

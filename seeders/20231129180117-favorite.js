@@ -5,11 +5,13 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('favorite', [
       {
-        makanan_id: 1, // Ganti dengan ID makanan yang valid dari tabel `makanans`
+        favotite_id: 1,
+        makanan_id: 1, // Ganti dengan ID makanan yang valid dari tabel `makanan`
         user_id: 1, // Ganti dengan ID user yang valid dari tabel `users`
       },
       {
-        makanan_id: 2, // Ganti dengan ID makanan yang valid dari tabel `makanans`
+        favotite_id: 2,
+        makanan_id: 2, // Ganti dengan ID makanan yang valid dari tabel `makanan`
         user_id: 1, // Ganti dengan ID user yang valid dari tabel `users`
       }
     ], {});  

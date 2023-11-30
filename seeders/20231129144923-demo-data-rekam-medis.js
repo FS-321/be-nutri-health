@@ -6,6 +6,7 @@ module.exports = {
 
       await queryInterface.bulkInsert('data_rekam_medis', [
         {
+          data_rekam_id: 1,
           tanggal_periksa: new Date(),
           keluhan: 'Sakit kepala',
           nama_dokter: 'Dr. Mori Calliope',
@@ -17,6 +18,7 @@ module.exports = {
           updatedAt: new Date()
         },
         {
+          data_rekam_id: 2,
           tanggal_periksa: new Date(),
           keluhan: 'Sesak napas',
           nama_dokter: 'Dr. Dimas Alan',

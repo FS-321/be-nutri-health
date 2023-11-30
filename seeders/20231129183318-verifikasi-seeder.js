@@ -2,21 +2,25 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('verivikasi', [
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('verifikasi', [
       {
         user_id: 1, // asumsi user dengan ID 1 ada
-        verified: true
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         user_id: 3, // asumsi user dengan ID 3 ada
-        verified: false
+        verified: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
-    
+
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('verivikasi', null, {});
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('verifikasi', null, {});
   }
 };

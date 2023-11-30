@@ -2,42 +2,31 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('dokter', {
-      dokter_id: {
+    await queryInterface.createTable('jadwal_praktik', {
+      jadwal_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      first_name: {
+      hari: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      last_name: {
-        type: Sequelize.STRING,
+      mulai: {
+        type: Sequelize.TIME,
         allowNull: false
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
-      no_telp: {
-        type: Sequelize.STRING
-      },
-      spesialis: {
-        type: Sequelize.STRING,
+      akhir: {
+        type: Sequelize.TIME,
         allowNull: false
       },
-      foto_dokter: {
-        type: Sequelize.STRING
-      },
-      poli_id: {
+      dokter_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'poliklinik',
-          key: 'poli_id'
+          model: 'dokter', 
+          key: 'dokter_id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
@@ -53,6 +42,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('dokter');
+    await queryInterface.dropTable('jadwal_praktik');
   }
 };

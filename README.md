@@ -6,7 +6,8 @@
 content-type  : json
 POST          : api.nutripal.site/login
 body          : {email, password}
-response      : {message gagal atau berhasil}
+response      : {message gagal atau berhasil, user attribute dan rolenya}
+signedCookie  : baka dibuat setelah login
 ```
 
 <h3>Register</h3>
@@ -17,7 +18,8 @@ POST           : api.nutripal.site/register
 body           : {email,nama_depan,nama_belakang,password,tanggal_lahir}
 tanggal lahir date "tahun-bulan-tgl"
 ex             : "2001-03-31"
-response      : {message gagal atau berhasil}
+response       : {message gagal berhasil, user attribute dan rolenya}
+signedCookie   : bakal dibuat setelah register untuk akses resource
 ```
 
 <h3>Poliklinik</h3>

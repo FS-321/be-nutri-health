@@ -21,7 +21,7 @@ module.exports = {
     async getOne(req, res) {
         const id = req.params
         try {
-            const dokter = await Dokter.findOne({ where: { id } })
+            const dokter = await Dokter.findOne({ where: { dokter_id : id } })
 
             return res.status(200).send(dokter)
         } catch (e) {
@@ -33,7 +33,7 @@ module.exports = {
         const data = req.body
         const id = req.params.id
         try {
-            const status = await Dokter.update(data, { where: id })
+            const status = await Dokter.update(data, { where: { dokter_id : id } })
 
             if (!status) return res.status(404).send({ message: "doctor not found" })
 
@@ -47,7 +47,7 @@ module.exports = {
     async deleteOne(req, res) {
         const id = req.params.id
         try {
-            const status = await Dokter.destroy({ where: { id } })
+            const status = await Dokter.destroy({ where: { dokter_id : id } })
 
             if (!status) return res.status(404).send({ message: "doctor is not found" })
 

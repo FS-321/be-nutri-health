@@ -19,7 +19,7 @@ module.exports = {
     },
 
     async getOne(req, res) {
-        const id = req.params
+        const id = req.params.id
         try {
             const jadwal_praktik = await Jadwal_praktik.findOne({ where: { jadwal_id : id } })
 

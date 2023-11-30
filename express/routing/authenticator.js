@@ -7,6 +7,7 @@ const dokterRouter = require('./routes/dokter')
 const poliklinikRouter = require('./routes/poliklinik')
 const layananRouter = require('./routes/layanan')
 const makananRouter = require('./routes/makanan')
+const jadwalPraktikRouter = require('./routes/jadwal-praktik')
 
 module.exports = function(app,req,res){
 
@@ -24,7 +25,8 @@ module.exports = function(app,req,res){
             app.use(makananRouter.makananRoutes)
             app.use(poliklinikRouter.poliklinikRoutes)
             app.use(layananRouter.layananRoutes)
-            // app.use(layananRouter.layananRoutes)
+            app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
+            app.use(layananRouter.layananRoutes)
     }
     
 } 

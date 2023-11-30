@@ -23,6 +23,7 @@ const registerRoutes = require('../routing/routes/register')
 module.exports = function(app,req,res){
 
     const {role} = getDecodedToken(req,res)
+    console.log('authenticator:',role)
     switch(role){
         case 'admin':
             app.use(dokterRoutes) 

@@ -1,7 +1,7 @@
 const sequelize = require('../../sequelize-instance')
 const DataTypes = require('sequelize')
 
-const Dokter = require('../../../models/dokter')
+const Dokter = require('../../../models/dokter')(sequelize,DataTypes)
 
 module.exports = {
     async getAll(req, res) {

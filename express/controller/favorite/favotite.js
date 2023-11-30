@@ -1,7 +1,7 @@
 const sequelize = require('../../sequelize-instance')
 const DataTypes = require('sequelize')
 
-const Dokter = require('../../../models/dokter')(sequelize,DataTypes)
+const Favorite = require('../../../models/favorite')
 
 module.exports = {
     async getAll(req, res) {
@@ -9,23 +9,23 @@ module.exports = {
         const pageSize = req.query.pageSize || 10
         const offset = (page - 1) * pageSize
         try {
-            const dokter = await Dokter.findAll({offset,limit:pageSize})
+            const favorite = await Favorite.findAll({offset,limit:pageSize})
 
-            return res.status(200).send(dokter)
+            return res.status(200).send(favorite)
 
         } catch (e) {
-            return res.status(500).send({ message: "something happen when fetching doctor" })
+            return res.status(500).send({ message: "something happen when fetching favorite" })
         }
     },
 
     async getOne(req, res) {
         const id = req.params
         try {
-            const dokter = await Dokter.findOne({ where: { dokter_id : id } })
+            const favorite = await Favorite.findOne({ where: { favorite_id : id } })
 
-            return res.status(200).send(dokter)
+            return res.status(200).send(favorite)
         } catch (e) {
-            return res.status(500).send({ message: "Something error when fetchind doctor" })
+            return res.status(500).send({ message: "Something error when fetchind favorite" })
         }
     },
 
@@ -33,23 +33,23 @@ module.exports = {
         const data = req.body
         const id = req.params.id
         try {
-            const status = await Dokter.update(data, { where: { dokter_id : id } })
+            const status = await Favorite.update(data, { where: { favorite_id : id } })
 
-            if (!status) return res.status(404).send({ message: "doctor not found" })
+            if (!status) return res.status(404).send({ message: "favorite not found" })
 
             return res.status(200).send({ message: "update succesful" })
 
         } catch (e) {
-            return res.status(500).send({ message: "something happen when updating doctor" })
+            return res.status(500).send({ message: "something happen when updating favorite" })
         }
     },
 
     async deleteOne(req, res) {
         const id = req.params.id
         try {
-            const status = await Dokter.destroy({ where: { dokter_id : id } })
+            const status = await Favorite.destroy({ where: { favorite_id : id } })
 
-            if (!status) return res.status(404).send({ message: "doctor is not found" })
+            if (!status) return res.status(404).send({ message: "favorite is not found" })
 
             return res.status(200).send({ message: "delete successful" })
         } catch (e) {

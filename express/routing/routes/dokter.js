@@ -9,4 +9,5 @@ dokterRoutesAdmin.delete('/dokter/:id', dokter.deleteOne)
 
 dokterRoutes.get('/dokter', dokter.getAll)
 dokterRoutes.get('/dokter/:id', dokter.getOne)
+dokterRoutes.get('/search/dokter', dokter.search)
 module.exports = { dokterRoutes, dokterRoutesAdmin }

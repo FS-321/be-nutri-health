@@ -1,6 +1,25 @@
+const { literal, Op, fn, col, Sequelize } = require('sequelize')
 const { Dokter, JadwalPraktik } = require('../../../models')
 
 module.exports = {
+    async search(req, res) {
+        const keyword = (req.query.keyword).toLowerCase()
+        console.log(keyword)
+        try {
+            const dokter = await Dokter.findAll({
+                where: literal(`LOWER(nama_depan) LIKE '%${keyword}%' OR LOWER(nama_belakang)LIKE '%${keyword}%'`)
+
+            })
+            return res.status(200).send(dokter)
+
+        } catch (e) {
+            console.log(e.message)
+            return res.status(500).send({ message: "something happen when searching" })
+        }
+
+
+    },
+
     async getAll(req, res) {
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10

@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      first_name: {
+      nama_depan: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      last_name: {
+      nama_belakang: {
         type: Sequelize.STRING,
         allowNull: false
       },

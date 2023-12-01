@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../../models')
 require('dotenv').config()
 const hash = require('../../utils/hash')
+const createNewToken = require('../controller/login/createNewToken')
 module.exports = {
     authenticateUser: async function (req, res, next) {
         const { email, password } = req.body

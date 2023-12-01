@@ -4,7 +4,7 @@ const hash = require('../../../utils/hash')
 const { User } = require('../../../models')
 
 const validateFormRegister = (form) => {
-        let nama_depan, nama_belakang, email, password, tanggal_lahir, no_hp
+        let nama_depan, nama_belakang, email, password, tanggal_lahir
         (
                 {
                         nama_depan,
@@ -20,7 +20,7 @@ const validateFormRegister = (form) => {
                 || !email
                 || !password
                 || !tanggal_lahir
-                || !no_hp)
+                )
                 throw new Error("Form tidak boleh ada yang kosong")
 
         const hashPass = hash(password)

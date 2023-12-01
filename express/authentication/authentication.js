@@ -1,6 +1,6 @@
 
 const jwt = require('jsonwebtoken')
-const getCookiesToken = require('./getCookiesToken')
+const getCookiesToken = require('./getAuthToken')
 const sequelize = require('../sequelize-instance')
 const DataTypes = require('sequelize')
 const User = require('../../models/user')(sequelize, DataTypes)
@@ -9,12 +9,9 @@ const hash = require('../../utils/hash')
 const createNewToken = require('../controller/login/createNewToken')
 module.exports = {
     authenticateUser: async function (req, res, next) {
-        console.log('ini authenticate user ')
         const { email, password } = req.body
-        const newToken = createNewToken(req)
         const hashedPass = hash(password)
         try {
-            // JANGAN LUPA MODEL GANTI !!!!!!!!!!!
             const user = await User.findOne({
                 where: { email, password: hashedPass },
                 attributes: { exclude: ['password'] }
@@ -23,25 +20,23 @@ module.exports = {
             if (!user) {
                 return res.status(401).send({ message: "email and password are invalid" })
             }
-            return res.status(200).send({ newToken, ...user })
+            const newToken = createNewToken(req,user.role)
+            return res.status(200).send({newToken, ...user.dataValues})
         }
-
         catch (e) {
             return res.status(500).send({ message: e.message })
         }
     },
 
     authenticateToken: function (req, res, next) {
-        const secretKey = process.env.TOKENKEY
-        const token = getCookiesToken(req)
-
+        const token = req.headers.authorization 
         if (!token) return res.status(401).send({ message: "Please login to acces this resource" })
 
-        jwt.verify(token, secretKey, (error, decoded) => {
+        jwt.verify(token, process.env.TOKENKEY, (error, decoded) => {
             if (error) {
-                return res.status(401).send({ message: "Token either modified or expired" })
+                // return res.status(401).send({ message: "Token either modified or expired" })
+                res.redirect('https://www.youtube.com')
             }
-
             if (decoded) next()
         })
     }

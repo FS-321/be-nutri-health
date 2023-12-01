@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-module.exports = function (req) {
+module.exports = function (req, role) {
     let email, password
     try {
         ({ email, password } = req.body)
@@ -10,7 +10,7 @@ module.exports = function (req) {
         return res.status(400).send({ message:e.message })
     }
     
-    const newToken = jwt.sign({ email, password }, process.env.TOKENKEY, { expiresIn: '3 days' })
+    const newToken = jwt.sign({ email, password,role }, process.env.TOKENKEY, { expiresIn: '3 days' })
      
      return newToken
     

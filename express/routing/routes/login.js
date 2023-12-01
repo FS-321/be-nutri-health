@@ -1,8 +1,7 @@
 const express = require('express')
-const createNewToken = require('../../controller/login/createNewToken')
 const { authenticateUser } = require('../../authentication/authentication')
 const loginRoutes = express.Router()
 
-loginRoutes.get('/login', authenticateUser )
+loginRoutes.post('/login', authenticateUser )
 
 module.exports = loginRoutes

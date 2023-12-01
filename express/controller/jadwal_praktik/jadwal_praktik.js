@@ -1,5 +1,5 @@
 
-const { JadwalPrakik } = require('../../../models')
+const { JadwalPraktik } = require('../../../models')
 
 module.exports = {
     async getAll(req, res) {
@@ -7,11 +7,13 @@ module.exports = {
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const jadwal_praktik = await JadwalPrakik.findAll({offset,limit:pageSize})
-
+            const jadwal_praktik = await JadwalPraktik.findAll({offset,limit:pageSize})
+            
+            console.log('ini praktik', jadwal_praktik)
             return res.status(200).send(jadwal_praktik)
 
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when fetching jadwal praktik" })
         }
     },

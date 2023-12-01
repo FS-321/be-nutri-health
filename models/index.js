@@ -7,7 +7,7 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-//const db = {};
+const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -31,33 +31,13 @@ fs
     db[model.name] = model;
   });
 
-
-const models = {
-  User: require('./user')(sequelize, Sequelize.DataTypes),
-  poliklinik: require('./poliklinik')(sequelize, Sequelize.DataTypes),
-  dokter: require('./dokter')(sequelize, Sequelize.DataTypes),
-  jadwalPraktik: require('./jadwalPraktik')(sequelize, Sequelize.DataTypes),
-  layanan: require('./layanan')(sequelize, Sequelize.DataTypes),
-  makanan: require('./makanan')(sequelize, Sequelize.DataTypes),
-  favorite: require('./favorite')(sequelize, Sequelize.DataTypes),
-  dataRekamMedis: require('./dataRekamMedis')(sequelize, Sequelize.DataTypes),
-  verifikasi: require('./verifikasi')(sequelize, Sequelize.DataTypes),
-};
-
-Object.keys(models).forEach(modelName => {
-  if (models[modelName].associate) {
-    models[modelName].associate(models);
-  }
-});  
-/*
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
-*/
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = models;
+module.exports = db;

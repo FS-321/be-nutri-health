@@ -1,12 +1,8 @@
 
 const jwt = require('jsonwebtoken')
-const getCookiesToken = require('./getAuthToken')
-const sequelize = require('../sequelize-instance')
-const DataTypes = require('sequelize')
-const User = require('../../models/user')(sequelize, DataTypes)
+const { User } = require('../../models')
 require('dotenv').config()
 const hash = require('../../utils/hash')
-const createNewToken = require('../controller/login/createNewToken')
 module.exports = {
     authenticateUser: async function (req, res, next) {
         const { email, password } = req.body

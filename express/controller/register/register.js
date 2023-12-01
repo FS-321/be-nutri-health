@@ -2,6 +2,7 @@
 const hash = require('../../../utils/hash')
 
 const { User } = require('../../../models')
+const createNewToken = require('../login/createNewToken')
 
 const validateFormRegister = (form) => {
         let nama_depan, nama_belakang, email, password, tanggal_lahir
@@ -38,6 +39,7 @@ module.exports = async function (req, res, next) {
 
         try {
                 const form = validateFormRegister(req.body)
+                const newToken = createNewToken(req,form.role)
                 const dateNow = new Date()
                 console.log('ini register control', form)
                 const status =await User.create({
@@ -48,7 +50,7 @@ module.exports = async function (req, res, next) {
                 console.log('status :', status)
                 if (!status) return res.status(401).send({ message: "Username or email already register" })
                 // kirim data yg sama dengan role
-                return res.status(200).send(form)
+                return res.status(200).send({newToken, ...form })
         } catch (e) {
                 return res.status(400).send({ message: "email already registered" })
         }

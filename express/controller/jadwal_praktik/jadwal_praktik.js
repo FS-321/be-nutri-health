@@ -1,15 +1,13 @@
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
 
-const Jadwal_praktik = require('../../../models/jadwalPraktik')
+const { JadwalPrakik } = require('../../../models')
 
 module.exports = {
     async getAll(req, res) {
-        const page = req.query.page || 1
-        const pageSize = req.query.pageSize || 10
+        const page = req.body.pages || 1
+        const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const jadwal_praktik = await Jadwal_praktik.findAll({offset,limit:pageSize})
+            const jadwal_praktik = await JadwalPrakik.findAll({offset,limit:pageSize})
 
             return res.status(200).send(jadwal_praktik)
 
@@ -19,7 +17,7 @@ module.exports = {
     },
 
     async getOne(req, res) {
-        const id = req.params
+        const id = req.params.id
         try {
             const jadwal_praktik = await Jadwal_praktik.findOne({ where: { jadwal_id : id } })
 

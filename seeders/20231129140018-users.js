@@ -1,5 +1,7 @@
 'use strict';
 
+const hash = require('../utils/hash');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -10,7 +12,7 @@ module.exports = {
           nama_belakang: 'Doe',
           email: 'jane.doe@example.com',
           tanggal_lahir: new Date('1990-01-01'),
-          password: '123',
+          password: hash('123'),
           role: 'user',
           no_hp: '08123456789',
           foto_url: 'http://example.com/path/to/jane_photo.jpg',
@@ -23,7 +25,7 @@ module.exports = {
           nama_belakang: 'Doe',
           email: 'john.doe@example.com',
           tanggal_lahir: new Date('1985-05-15'),
-          password: '456',
+          password: hash('456'),
           role: 'admin',
           no_hp: '08198765432',
           foto_url: 'http://example.com/path/to/john_photo.jpg',
@@ -36,7 +38,7 @@ module.exports = {
           nama_belakang: 'Wake',
           email: 'alan@example.com',
           tanggal_lahir: new Date('1992-10-21'),
-          password: '789',
+          password: hash('789'),
           role: 'user',
           no_hp: '08123457709',
           foto_url: 'http://example.com/path/to/john_photo.jpg',

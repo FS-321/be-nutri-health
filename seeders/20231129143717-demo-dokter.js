@@ -6,8 +6,8 @@ module.exports = {
       await queryInterface.bulkInsert('dokter', [
         {
           dokter_id: 1,
-          first_name: 'dr. Mori',
-          last_name: 'Calliope',
+          nama_depan: 'dr. Mori',
+          nama_belakang: 'Calliope',
           email: 'mori@example.com',
           no_telp: '0800000001',
           spesialis: 'Umum',
@@ -18,8 +18,8 @@ module.exports = {
         },
         {
           dokter_id: 2,
-          first_name: 'dr. Dimas',
-          last_name: 'Alan',
+          nama_depan: 'dr. Dimas',
+          nama_belakang: 'Alan',
           email: 'dimas@example.com',
           no_telp: '0800000002',
           spesialis: 'Paru-paru',

@@ -1,7 +1,4 @@
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
-
-const Favorite = require('../../../models/favorite')
+const { Favorite } = require('../../../models')
 
 module.exports = {
     async getAll(req, res) {

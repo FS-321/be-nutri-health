@@ -15,7 +15,55 @@ module.exports = {
         verified: false,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        user_id: 4, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 5, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 6, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 7, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 8, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 10, 
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 11, 
+        verified: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        user_id: 12, 
+        verified: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
 
   },

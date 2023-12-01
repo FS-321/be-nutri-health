@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
-    first_name: {
+    nama_depan: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    last_name: {
+    nama_belakang: {
       type: DataTypes.STRING,
       allowNull: false
     },

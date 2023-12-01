@@ -1,9 +1,7 @@
 
 const hash = require('../../../utils/hash')
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
 
-const User = require('../../../models/user')(sequelize, DataTypes)
+const { User } = require('../../../models')
 
 const validateFormRegister = (form) => {
         let nama_depan, nama_belakang, email, password, tanggal_lahir, no_hp

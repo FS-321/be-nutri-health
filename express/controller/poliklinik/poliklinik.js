@@ -1,7 +1,4 @@
-const dokter = require('../../../models/dokter')
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
-const Poliklinik = require('../../../models/poliklinik')(sequelize, DataTypes)
+const { Poliklinik,Dokter } = require('../../../models')
 
 module.exports = {
     async create(req, res) {
@@ -26,6 +23,9 @@ module.exports = {
             const poliklinik = await Poliklinik.findAll({
                 offset,
                 limit: pageSize,
+                include : [{
+                    model:Dokter
+                }]
             })
 
             return res.status(200).send(poliklinik)
@@ -40,6 +40,9 @@ module.exports = {
         try {
             const poliklinik = await Poliklinik.findOne({
                 where: { poli_id: id },
+                include : [{
+                    model:Dokter
+                }]
             })
 
             return res.status(200).send(poliklinik)

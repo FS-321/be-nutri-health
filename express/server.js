@@ -11,8 +11,8 @@ let rootRouter = null
 
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.TOKENKEY))
-
-app.use(cors({ credentials: true, origin: true }))
+//{ credentials: true, origin: true }
+app.use(cors())
 
 app.use('/', (req, res, next) => {
     rootRouter = authenticator(app, req, res)

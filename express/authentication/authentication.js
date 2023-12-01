@@ -6,23 +6,24 @@ const DataTypes = require('sequelize')
 const User = require('../../models/user')(sequelize, DataTypes)
 require('dotenv').config()
 const hash = require('../../utils/hash')
+const createNewToken = require('../controller/login/createNewToken')
 module.exports = {
     authenticateUser: async function (req, res, next) {
         console.log('ini authenticate user ')
-        console.log('ini body', req.body)
-        const { email,  password } = req.body
+        const { email, password } = req.body
+        const newToken = createNewToken(req)
         const hashedPass = hash(password)
         try {
             // JANGAN LUPA MODEL GANTI !!!!!!!!!!!
             const user = await User.findOne({
-                where: { email, password:hashedPass },
+                where: { email, password: hashedPass },
                 attributes: { exclude: ['password'] }
             })
 
             if (!user) {
                 return res.status(401).send({ message: "email and password are invalid" })
             }
-            return res.status(200).send(user)
+            return res.status(200).send({ newToken, ...user })
         }
 
         catch (e) {

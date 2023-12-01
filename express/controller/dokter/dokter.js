@@ -1,7 +1,4 @@
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
-const jadwalPraktik = require('../../../models/jadwalpraktik')(sequelize, DataTypes)
-const Dokter = require('../../../models/dokter')(sequelize, DataTypes)
+const { Dokter, JadwalPraktik } = require('../../../models')
 
 module.exports = {
     async getAll(req, res) {
@@ -11,10 +8,10 @@ module.exports = {
         try {
             const dokter = await Dokter.findAll({
                 offset, limit: pageSize,
-                // include: [{
-                //     model: jadwalPraktik,
-                //     as : "JadwalPraktik"
-                // }]
+                include: [{
+                    model: JadwalPraktik,
+                    as: "JadwalPraktik"
+                }]
             })
 
             return res.status(200).send(dokter)
@@ -26,9 +23,16 @@ module.exports = {
     },
 
     async getOne(req, res) {
-        const id = req.params
+        const id = req.params.id
         try {
-            const dokter = await Dokter.findOne({ where: { dokter_id: id } })
+            const dokter = await Dokter.findOne({
+                where: { dokter_id: id },
+                include: [{
+                    model: JadwalPraktik,
+                    as: "JadwalPraktik"
+                }]
+
+            })
 
             return res.status(200).send(dokter)
         } catch (e) {

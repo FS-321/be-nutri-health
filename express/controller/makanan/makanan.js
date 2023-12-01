@@ -1,6 +1,4 @@
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
-const Makanan = require('../../../models/makanan')(sequelize, DataTypes)
+const { Makanan } = require('../../../models/')
 
 module.exports = {
     async getAll(req, res) {

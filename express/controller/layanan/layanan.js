@@ -1,7 +1,5 @@
-const sequelize = require('../../sequelize-instance')
-const DataTypes = require('sequelize')
 
-const Layanan = require('../../../models/layanan')(sequelize,DataTypes)
+const {Layanan} = require('../../../models/')
 
 module.exports = {
     async getAll(req, res) {

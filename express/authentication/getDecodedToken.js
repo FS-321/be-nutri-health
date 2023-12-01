@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken')
-const getCookiesToken = require('./getAuthToken')
+const getAuthToken = require('./getAuthToken')
 require('dotenv').config()
 module.exports = function (req, res) {
-    const token = getCookiesToken(req)
+    const token = getAuthToken(req)
     if (token.role === 'guest') return token
     try {
         const decodedToken = jwt.verify(token, process.env.TOKENKEY)

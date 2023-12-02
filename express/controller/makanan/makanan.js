@@ -14,25 +14,29 @@ module.exports = {
 
             if (user) return res.status(409).send({ message: "already added to favorite" })
 
-            const status = await Makanan.create({
+            const status = await Favorite.create({
                 makanan_id, user_id
             })
 
             return res.status(200).send({ message: "add makanan successful" })
 
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when adding makanan" })
         }
     },
     async removeFavorit(req, res) {
-        const id = req.params.id
-        const user_id = getDecodedToken(req.headers.authorization)['user_id']
+        const makanan_id = req.params.id
+        const user_id = getDecodedToken(req,res)['user_id']
         try {
-            const status = await Favorit.destroy({ where: id })
-            if (!status[0]) return res.status(404).send({ message: "Favorite not found" })
+            const status = await Favorite.destroy({
+                where: { makanan_id, user_id }
+            })
+            if (!status) return res.status(404).send({ message: "Favorite not found" })
 
             return res.status(200).send({ message: "remove favorite makanan successful" })
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when removing favorite" })
         }
     },
@@ -45,6 +49,7 @@ module.exports = {
 
             return res.status(200).send(makanan)
         } catch (e) {
+            console.log(e.message)
             res.status(500).send({ message: "something happen when fetching makanan" })
         }
     },
@@ -57,6 +62,7 @@ module.exports = {
 
             return res.status(200).send(makanan)
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when fetching makanan" })
         }
     },
@@ -69,6 +75,7 @@ module.exports = {
 
             return res.status(200).send(status)
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when updating makanan" })
         }
 
@@ -82,13 +89,13 @@ module.exports = {
             if (!status) return res.status(404).send({ message: "makanan not found" })
             return res.status(200).send({ message: "delete succseful" })
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when deleting makanan" })
         }
     },
 
     async create(req, res) {
         const form = req.body
-
         try {
             const status = await Makanan.create(form)
 
@@ -96,6 +103,7 @@ module.exports = {
 
             return res.status(200).send({ message: "creating makanan success" })
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when creating Makanan" })
         }
     }

@@ -5,9 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Dokter extends Model {
     static associate(models) {
-      Dokter.hasMany(models.JadwalPraktik, {
+      
+      this.hasMany(models.JadwalPraktik, {
         foreignKey: 'dokter_id',
+        as:'JadwalPraktik'
       });
+      
       Dokter.belongsTo(models.Poliklinik, {
         foreignKey: 'poli_id',
       });
@@ -20,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
-    first_name: {
+    nama_depan: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    last_name: {
+    nama_belakang: {
       type: DataTypes.STRING,
       allowNull: false
     },

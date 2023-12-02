@@ -5,9 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class JadwalPraktik extends Model {
     static associate(models) {
-      JadwalPraktik.belongsTo(models.Dokter, {
-        foreignKey: 'dokter_id',
-        as: 'dokter'
+      this.belongsTo(models.Dokter, {
+        foreignKey: 'dokter_id'
       });
     }
   }
@@ -22,11 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     mulai: DataTypes.TIME,
     akhir: DataTypes.TIME,
     dokter_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Dokter',
-        key: 'dokter_id'
+      type: DataTypes.INTEGER, references: {
+        model: "Dokter"
       }
     }
   }, {

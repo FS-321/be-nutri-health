@@ -53,13 +53,13 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        user_id: 11, 
+        user_id: 2, 
         verified: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 12, 
+        user_id: 9, 
         verified: false,
         createdAt: new Date(),
         updatedAt: new Date()

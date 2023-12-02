@@ -2,6 +2,18 @@
 const {Layanan} = require('../../../models/')
 
 module.exports = {
+    async create(req,res){
+        const form = req.body
+        try{
+            const status = await Layanan.create(form)
+            
+            if(!status) return res.status(400).send({message:"invalid form"})
+            
+            return res.status(200).send({message:"create dokter successful"})
+        }catch(e){
+            return res.stats(500).send({message:"something happen when creating dokter"})
+        }
+    },
     async getAll(req, res) {
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10

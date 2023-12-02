@@ -108,7 +108,7 @@ module.exports = {
           nama_dokter: 'Dr. Siti Nurhaliza',
           tanggal_lahir: new Date('1991-08-08'),
           diagnosa: 'Miopia',
-          pasien_id: 11, 
+          pasien_id: 1, 
           dokter_id: 4,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -120,7 +120,7 @@ module.exports = {
           nama_dokter: 'Dr. Fajar Baskoro',
           tanggal_lahir: new Date('1993-02-17'),
           diagnosa: 'Saraf kejepit',
-          pasien_id: 12, 
+          pasien_id: 8, 
           dokter_id: 10,
           createdAt: new Date(),
           updatedAt: new Date()

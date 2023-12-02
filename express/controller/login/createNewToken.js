@@ -1,16 +1,7 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
-module.exports = function (req, role) {
-    let email, password
-    try {
-        ({ email, password } = req.body)
-        if(!email || !password) throw new Error("Invalid Body") 
-
-    } catch (e) {
-        return res.status(400).send({ message:e.message })
-    }
-    
-    const newToken = jwt.sign({ email, password,role }, process.env.TOKENKEY, { expiresIn: '3 days' })
+module.exports = function ( role, user_id) {
+    const newToken = jwt.sign({ role,user_id }, process.env.TOKENKEY, { expiresIn: '3 days' })
      
      return newToken
     

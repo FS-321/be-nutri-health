@@ -19,6 +19,19 @@ module.exports = {
 
 
     },
+    
+    async create(req,res){
+        const form = req.body
+        try{
+            const status = await Dokter.create(form)
+            
+            if(!status) return res.status(409).send({message:"email already registered"})
+            
+            return res.status(200).send({message:"create dokter successful"})
+        }catch(e){
+            return res.stats(500).send({message:"something happen when creating dokter"})
+        }
+    },
 
     async getAll(req, res) {
         const page = req.body.pages || 1

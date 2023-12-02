@@ -28,7 +28,7 @@ module.exports = {
       {
         favorite_id: 4,
         makanan_id: 4,
-        user_id: 11,
+        user_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -72,7 +72,7 @@ module.exports = {
       {
         favorite_id: 10,
         makanan_id: 10,
-        user_id: 12,
+        user_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },

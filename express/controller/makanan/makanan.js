@@ -41,8 +41,8 @@ module.exports = {
         }
     },
     async getAll(req, res) {
-        const page = req.query.page || 1
-        const pageSize = req.query.pageSize || 10
+        const page = req.body.page || 1
+        const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
             const makanan = await Makanan.findAll({ offset, limit: pageSize })

@@ -18,7 +18,6 @@ function fallbackRoute(req, res) {
 
 
 module.exports = function (app, req, res) {
-    console.log(getDecodedToken(req,res))
     const { role } = getDecodedToken(req, res)
     console.log('ini role authenticator', role)
 

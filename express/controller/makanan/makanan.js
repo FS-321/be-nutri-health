@@ -27,7 +27,7 @@ module.exports = {
     },
     async removeFavorit(req, res) {
         const makanan_id = req.params.id
-        const user_id = getDecodedToken(req,res)['user_id']
+        const user_id = getDecodedToken(req, res)['user_id']
         try {
             const status = await Favorite.destroy({
                 where: { makanan_id, user_id }
@@ -96,8 +96,9 @@ module.exports = {
 
     async create(req, res) {
         const form = req.body
+        const date = new Date()
         try {
-            const status = await Makanan.create(form)
+            const status = await Makanan.create({ ...form, createdAt: date, updatedAt: date })
 
             if (!status) return res.status(400).send({ message: "invalid form" })
 

@@ -46,10 +46,10 @@ module.exports = async function (req, res, next) {
                         createdAt: dateNow,
                         updatedAt: dateNow
                 })
-                if (!status) return res.status(401).send({ message: "Username or email already register" })
+                if (!status) return res.status(409).send({ message: "email already register" })
                 // kirim data yg sama dengan role
                 return res.status(200).send({ newToken, ...form })
         } catch (e) {
-                return res.status(400).send({ message: "email already registered" })
+                return res.status(400).send({ message: "something happen when regsitering" })
         }
 } 

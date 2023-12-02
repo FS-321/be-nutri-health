@@ -1,12 +1,15 @@
 const { Favorite } = require('../../../models')
+const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
     async getAll(req, res) {
+        const user_id = getDecodedToken(req,res)['user_id']
+        console.log('ini farite all', user_id)
         const page = req.query.page || 1
         const pageSize = req.query.pageSize || 10
         const offset = (page - 1) * pageSize
         try {
-            const favorite = await Favorite.findAll({offset,limit:pageSize})
+            const favorite = await Favorite.findAll({offset,limit:pageSize,where:{user_id}})
 
             return res.status(200).send(favorite)
 

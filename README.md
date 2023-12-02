@@ -332,7 +332,7 @@ response       :
 on error      : 404 jadwal not found
 ```
 
-<h5>Update jadwal</h5>
+<h5>create jadwal</h5>
 
 ```
 Content-type   : json
@@ -346,5 +346,5 @@ body           :
     dokter_id : number
   }
 response      : succsessful message 
-on error      : 404 jadwal not found
+on error      : None
 ```

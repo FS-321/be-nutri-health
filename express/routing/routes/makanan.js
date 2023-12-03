@@ -7,6 +7,7 @@ const makanan = require('../../controller/makanan/makanan')
 
 makananRoutes.get('/makanan', makanan.getAll)
 makananRoutes.get('/makanan/:id', makanan.getOne)
+makananRoutes.get('/cari/makanan', makanan.search)
 
 makananRoutesUser.use(makananRoutes)
 makananRoutesUser.post('/makanan/:id/favorite', makanan.addTofavorit)

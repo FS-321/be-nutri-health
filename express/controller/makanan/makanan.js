@@ -1,7 +1,25 @@
-const { Makanan, Favorite } = require('../../../models/')
+const { Makanan, Favorit } = require('../../../models/')
+const {literal } = require('sequelize')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
+    async search(req, res) {
+        console.log('ini search makanan')
+        const keyword = (req.query.keyword).toLowerCase()
+        try {
+            const makanan = await Makanan.findAll({
+                where: literal(`LOWER(nama_makanan) LIKE '%${keyword}%' `)
+
+            })
+            return res.status(200).send(makanan)
+
+        } catch (e) {
+            console.log(e.message)
+            return res.status(500).send({ message: "something happen when fetching makanan" })
+        }
+
+
+    },
     async addTofavorit(req, res) {
         const makanan_id = +req.params.id
         const user_id = getDecodedToken(req, res)['user_id']

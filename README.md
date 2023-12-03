@@ -391,8 +391,9 @@ body           : {
   tanggal_periksa: Date,
   keluhan: string,
   dokter_id : number,
-  tanggal_la 
-  
+  user_id: string,
+  dokter_id : number,
+  diagnosa
 }
 response       : 
   {

@@ -332,7 +332,8 @@ response       :
 on error      : 404 jadwal not found
 ```
 
-<h5>Buat jadwal</h5>
+
+<h5>create jadwal</h5>
 
 ```
 Content-type   : json
@@ -346,7 +347,7 @@ body           :
     dokter_id : number
   }
 response      : succsessful message 
-on error      : 404 jadwal not found
+on error      : None
 ```
 
 <h3>Data Rekam Medis</h3>
@@ -390,7 +391,8 @@ body           : {
   tanggal_periksa: Date,
   keluhan: string,
   dokter_id : number,
-  tanggal_la 
+  user_id : string,
+  diagnosa : string 
   
 }
 response       : 
@@ -409,11 +411,11 @@ Content-type   : json
 Headers        : Authorization Admin
 PUT            : api.nutripal.site/data-rekam-medis/:id
 body           : {
-  user_id,
-  dokter_id,
-  tanggal_periksa,
-  keluhan,
-  diagnosa,  
+  user_id : string,
+  dokter_id : number,
+  tanggal_periksa:date,
+  keluhan :string,
+  diagnosa :string,  
 }
 response       : message berhasil di update
 on error      : 403 not login or not have access
@@ -425,7 +427,7 @@ on error      : 403 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/data-rekam-medis/:
+PUT            : api.nutripal.site/dashboard/:
 body           : None
 response       : 
 {
@@ -436,6 +438,5 @@ response       :
   "total_poliklinik",
   "total_pasien"
 }
-
 ```
 

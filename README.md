@@ -391,7 +391,8 @@ body           : {
   tanggal_periksa: Date,
   keluhan: string,
   dokter_id : number,
-  tanggal_la 
+  user_id : string,
+  diagnosa : string 
   
 }
 response       : 
@@ -410,11 +411,11 @@ Content-type   : json
 Headers        : Authorization Admin
 PUT            : api.nutripal.site/data-rekam-medis/:id
 body           : {
-  user_id,
-  dokter_id,
-  tanggal_periksa,
-  keluhan,
-  diagnosa,  
+  user_id : string,
+  dokter_id : number,
+  tanggal_periksa:date,
+  keluhan :string,
+  diagnosa :string,  
 }
 response       : message berhasil di update
 on error      : 403 not login or not have access

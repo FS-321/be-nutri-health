@@ -5,7 +5,8 @@ const layanan = require('../../controller/layanan/layanan')
 
 layananRoutesAdmin.get('/layanan', layanan.getAll )
 layananRoutesAdmin.get('/layanan/:id', layanan.getOne )
-layananRoutesAdmin.post('/layanan/:id', layanan.update )
+layananRoutesAdmin.put('/layanan/:id', layanan.update )
+layananRoutesAdmin.post('/layanan', layanan.create )
 layananRoutesAdmin.delete('/layanan/:id', layanan.deleteOne )
 
 

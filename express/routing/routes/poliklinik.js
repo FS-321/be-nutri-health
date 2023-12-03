@@ -7,6 +7,7 @@ poliklinikRoutesAdmin.get('/poliklinik',poliklinik.getAll)
 poliklinikRoutesAdmin.get('/poliklinik/:id',poliklinik.getOne)
 poliklinikRoutesAdmin.post('/poliklinik', poliklinik.create)
 poliklinikRoutesAdmin.delete('/poliklinik/:id', poliklinik.deleteOne)
+poliklinikRoutesAdmin.put('/poliklinik/:id', poliklinik.update)
 
 poliklinikRoutes.get('/poliklinik',poliklinik.getAll)
 poliklinikRoutes.get('/poliklinik/:id',poliklinik.getOne)

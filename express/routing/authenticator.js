@@ -9,6 +9,7 @@ const jadwalPraktikRouter = require('./routes/jadwal-praktik')
 const loginRoutes = require('./routes/login')
 const { authenticateToken, authenticateUser } = require('../authentication/authentication')
 const favoriteRouter = require('./routes/favorite')
+const rekamMedisRoutes = require('./routes/rekamMedis')
 
 
 function fallbackRoute(req, res) {
@@ -24,6 +25,7 @@ module.exports = function (app, req, res) {
     switch (role) {
         case 'admin':
             app.use(authenticateToken, dokterRoutesAdmin)
+            app.use(authenticateToken, rekamMedisRoutes.rekamMedisRoutesAdmin)
             app.use(authenticateToken, makananRouter.makananRoutesAdmin)
             app.use(authenticateToken, poliklinikRouter.poliklinikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
@@ -35,6 +37,7 @@ module.exports = function (app, req, res) {
             app.use(dokterRoutes)
             app.use(registerRoutes)
             app.use(authenticateToken, makananRouter.makananRoutesUser)
+            app.use(authenticateToken,rekamMedisRoutes.rekamMedisRoutesUser)
             app.use(poliklinikRouter.poliklinikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)

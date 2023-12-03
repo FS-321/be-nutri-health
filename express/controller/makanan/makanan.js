@@ -41,7 +41,7 @@ module.exports = {
         }
     },
     async getAll(req, res) {
-        const page = req.body.page || 1
+        const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
@@ -95,6 +95,7 @@ module.exports = {
     },
 
     async create(req, res) {
+        console.log('ini makana create')
         const form = req.body
         const date = new Date()
         try {

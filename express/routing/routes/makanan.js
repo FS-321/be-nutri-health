@@ -14,7 +14,7 @@ makananRoutesUser.delete('/makanan/:id/favorite', makanan.removeFavorit)
 
 makananRoutesAdmin.use(makananRoutes)
 makananRoutesAdmin.post('/makanan', makanan.create)
-makananRoutesAdmin.post('/makanan/:id', makanan.update)
-makananRoutesAdmin.delete('/makanan', makanan.deleteOne)
+makananRoutesAdmin.put('/makanan/:id', makanan.update)
+makananRoutesAdmin.delete('/makanan/:id', makanan.deleteOne)
 
 module.exports = { makananRoutes, makananRoutesAdmin, makananRoutesUser }

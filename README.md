@@ -446,8 +446,8 @@ response       :
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/user/:
-body           : None
+GET            : api.nutripal.site/user/
+body           : {pages,limit}
 response       : [
   {
     user_id : string,
@@ -456,12 +456,12 @@ response       : [
 ]
 ```
 
-<h5>get one user</h5>
+<h5>get one</h5>
 
 ```
 Content-type   : json
-Headers        : Authorization Admin/user
-GET            : api.nutripal.site/user/:
+Headers        : Authorization Admin
+GET            : api.nutripal.site/user/:id
 body           : None
 response       : 
   {
@@ -476,7 +476,7 @@ response       :
 ```
 Content-type   : json
 Headers        : Authorization user
-PUT            : api.nutripal.site/user:
+PUT            : api.nutripal.site/user
 body           : 
   {
     user_id : string,
@@ -521,6 +521,11 @@ Headers        : Authorization Admin
 PUT            : api.nutripal.site/cari/user?keword=xxxxx
 - xxxx = adalah kata kunci
 body           : None
-response       : succesfull message
+response       : {
+  {
+    user_id,
+    ...attr user lainnya
+  }
+}
 on error       : 404 User not found
 ```

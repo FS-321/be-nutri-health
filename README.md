@@ -426,7 +426,7 @@ on error      : 403 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/data-rekam-medis/:
+PUT            : api.nutripal.site/dashboard/:
 body           : None
 response       : 
 {

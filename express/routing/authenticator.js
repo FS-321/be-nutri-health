@@ -11,6 +11,7 @@ const { authenticateToken, authenticateUser } = require('../authentication/authe
 const favoriteRouter = require('./routes/favorite')
 const rekamMedisRoutes = require('./routes/rekamMedis')
 const dashboardRoutes = require('./routes/dashboard')
+const userRoutes = require('../routing/routes/user')
 
 
 function fallbackRoute(req, res) {
@@ -31,14 +32,16 @@ module.exports = function (app, req, res) {
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
             app.use(authenticateToken, jadwalPraktikRouter.jadwalPraktikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
+            app.use(authenticateToken, userRoutes.userRoutesAdmin)
             app.use(dashboardRoutes)
-            // app.use('/*', fallbackRoute)
+            app.use('/*', fallbackRoute)
         case 'user':
             app.use(loginRoutes)
             app.use(dokterRoutes)
             app.use(registerRoutes)
             app.use(authenticateToken, makananRouter.makananRoutesUser)
             app.use(authenticateToken,rekamMedisRoutes.rekamMedisRoutesUser)
+            app.use(authenticateToken, userRoutes.userRoutesUser)
             app.use(poliklinikRouter.poliklinikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
@@ -54,7 +57,7 @@ module.exports = function (app, req, res) {
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
             app.use(layananRouter.layananRoutes)
-            // app.use('/*', fallbackRoute)
+            app.use('/*', fallbackRoute)
     }
 
 } 

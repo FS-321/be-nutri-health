@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const generateId = require('../utils/generateId');
 module.exports = (sequelize, DataTypes) => {
   class Favorite extends Model {
     static associate(models) {
@@ -29,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: {
         model: 'User',

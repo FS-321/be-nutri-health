@@ -27,7 +27,7 @@ module.exports = {
     },
     async removeFavorit(req, res) {
         const makanan_id = req.params.id
-        const user_id = getDecodedToken(req,res)['user_id']
+        const user_id = getDecodedToken(req, res)['user_id']
         try {
             const status = await Favorite.destroy({
                 where: { makanan_id, user_id }
@@ -41,8 +41,8 @@ module.exports = {
         }
     },
     async getAll(req, res) {
-        const page = req.query.page || 1
-        const pageSize = req.query.pageSize || 10
+        const page = req.body.pages || 1
+        const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
             const makanan = await Makanan.findAll({ offset, limit: pageSize })
@@ -95,16 +95,18 @@ module.exports = {
     },
 
     async create(req, res) {
+        console.log('ini makana create')
         const form = req.body
+        const date = new Date()
         try {
-            const status = await Makanan.create(form)
+            const status = await Makanan.create({ ...form, createdAt: date, updatedAt: date })
 
             if (!status) return res.status(400).send({ message: "invalid form" })
 
             return res.status(200).send({ message: "creating makanan success" })
         } catch (e) {
-            console.log(e.message)
-            return res.status(500).send({ message: "something happen when creating Makanan" })
+            console.log('error',e.message)
+            return res.status(500).send({ message: "something happen when creating Makanan !" })
         }
     }
 

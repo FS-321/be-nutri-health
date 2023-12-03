@@ -26,7 +26,6 @@ module.exports = {
     },
 
     authenticateToken: function (req, res, next) {
-        console.log('ini auth token fn')
         const token = req.headers.authorization 
         
         if (!token) return res.status(401).send({ message: "Please login to acces this resource" })

@@ -1,12 +1,13 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+const generateUserId = require('../utils/generateId');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('makanan', {
       makanan_id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER
       },
       nama_makanan: {

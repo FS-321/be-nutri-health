@@ -81,7 +81,7 @@ on error       : 404 poliklinik not found
 ```
 Content-type   : json
 headers        : Authorization admin token
-DELETE         : api.nutripal.site/poliklinik/:id
+PUT            : api.nutripal.site/poliklinik/:id
 body           : {
   nama_poli : string
   lokasi_gedung : string
@@ -154,7 +154,7 @@ on error       : 409 email already registered
 ```
 Content-type   : json
 headers        : Authorization Admin Token
-POST           : api.nutripal.site/dokter/:id
+PUT            : api.nutripal.site/dokter/:id
 body           : {
   nama_depan : string,
   nama_belakang : string,
@@ -220,7 +220,7 @@ on error       : 404 favorite not found
 
 ```
 Content-type   : json
-POST           : api.nutripal.site/makanan/:id_makanan/
+PUT            : api.nutripal.site/makanan/:id_makanan/
 Headers        : Authorization Admin Token
 body           : {
     nama_makanan : str
@@ -320,7 +320,7 @@ on error       : 404 jadwal not found
 ```
 Content-type   : json
 Headers        : Authorization Admin Token
-POST           : api.nutripal.site/jadwal-praktik/:id
+PUT            : api.nutripal.site/jadwal-praktik/:id
 body           : None
 response       : 
   {
@@ -331,6 +331,7 @@ response       :
   }
 on error      : 404 jadwal not found
 ```
+
 
 <h5>create jadwal</h5>
 
@@ -348,3 +349,93 @@ body           :
 response      : succsessful message 
 on error      : None
 ```
+
+<h3>Data Rekam Medis</h3>
+<h5>get all pages</h5>
+
+```
+Content-type   : json
+Headers        : Authorization User/Admin
+GET            : api.nutripal.site/data-rekam-medis
+body           : {pages,limit}
+response       : [
+  {
+    data_rekam_id
+    ...atr lainnya
+  }
+]
+on error      : 401 not login or not have access 
+```
+<h5>get one </h5>
+
+```
+Content-type   : json
+Headers        : Authorization User/Admin
+GET            : api.nutripal.site/data-rekam-medis
+body           : {pages,limit}
+response       : 
+  {
+    data_rekam_id
+    ...atr lainnya
+  }
+on error      : 401 not login or not have access
+```
+
+<h5>buat rekam medis</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/data-rekam-medis
+body           : {
+  tanggal_periksa: Date,
+  keluhan: string,
+  dokter_id : number,
+  tanggal_la 
+  
+}
+response       : 
+  {
+    data_rekam_id
+    ...atr lainnya
+  }
+on error      : 401 not login or not have access
+```
+
+
+<h5>update rekam medis</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/data-rekam-medis/:id
+body           : {
+  user_id,
+  dokter_id,
+  tanggal_periksa,
+  keluhan,
+  diagnosa,  
+}
+response       : message berhasil di update
+on error      : 403 not login or not have access
+```
+
+<h3>Data Dashboard<h3>
+<h5>get dashboard data</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/data-rekam-medis/:
+body           : None
+response       : 
+{
+  "total_layanan",
+  "total_data_rekam_medis",
+  "total_makanan",
+  "total_dokter",
+  "total_poliklinik",
+  "total_pasien"
+}
+```
+

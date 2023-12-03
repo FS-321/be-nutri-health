@@ -9,6 +9,8 @@ const jadwalPraktikRouter = require('./routes/jadwal-praktik')
 const loginRoutes = require('./routes/login')
 const { authenticateToken, authenticateUser } = require('../authentication/authentication')
 const favoriteRouter = require('./routes/favorite')
+const rekamMedisRoutes = require('./routes/rekamMedis')
+const dashboardRoutes = require('./routes/dashboard')
 
 
 function fallbackRoute(req, res) {
@@ -16,26 +18,27 @@ function fallbackRoute(req, res) {
     return res.status(404).send({ message: "Error Resource not found or not login yet" })
 }
 
-
 module.exports = function (app, req, res) {
-
     const { role } = getDecodedToken(req, res)
     console.log('ini role authenticator', role)
 
     switch (role) {
         case 'admin':
             app.use(authenticateToken, dokterRoutesAdmin)
+            app.use(authenticateToken, rekamMedisRoutes.rekamMedisRoutesAdmin)
             app.use(authenticateToken, makananRouter.makananRoutesAdmin)
             app.use(authenticateToken, poliklinikRouter.poliklinikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
             app.use(authenticateToken, jadwalPraktikRouter.jadwalPraktikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
+            app.use(dashboardRoutes)
             // app.use('/*', fallbackRoute)
         case 'user':
             app.use(loginRoutes)
             app.use(dokterRoutes)
             app.use(registerRoutes)
             app.use(authenticateToken, makananRouter.makananRoutesUser)
+            app.use(authenticateToken,rekamMedisRoutes.rekamMedisRoutesUser)
             app.use(poliklinikRouter.poliklinikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)

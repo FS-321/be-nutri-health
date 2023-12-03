@@ -371,7 +371,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/data-rekam-medis
+GET            : api.nutripal.site/data-rekam-medis/:id
 body           : {pages,limit}
 response       : 
   {

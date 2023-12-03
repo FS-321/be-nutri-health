@@ -440,3 +440,87 @@ response       :
 }
 ```
 
+<h3> User <h3>
+<h5>get all user</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/user/:
+body           : None
+response       : [
+  {
+    user_id : string,
+    ...attr lainnya user
+  }
+]
+```
+
+<h5>get one user</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin/user
+GET            : api.nutripal.site/user/:
+body           : None
+response       : 
+  {
+    user_id : string,
+    ...attr lainnya user
+  }
+
+```
+
+<h5>update by user</h5>
+
+```
+Content-type   : json
+Headers        : Authorization user
+PUT            : api.nutripal.site/user:
+body           : 
+  {
+    user_id : string,
+    ...attr lainnya user
+  }
+
+response       : succesfull message
+```
+
+<h5>update by Admin</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/user/:id:
+body           : 
+  {
+    user_id : string,
+    ...attr lainnya user
+  }
+
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>delete user</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+DELETE         : api.nutripal.site/user/:id:
+body           : None
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>Search</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/cari/user?keword=xxxxx
+- xxxx = adalah kata kunci
+body           : None
+response       : succesfull message
+on error       : 404 User not found
+```

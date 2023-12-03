@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const generateId = require('../utils/generateId');
 module.exports = (sequelize, DataTypes) => {
   class Makanan extends Model {
     static associate(models) {
@@ -12,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     makanan_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     nama_makanan: DataTypes.STRING,
     energi: DataTypes.DECIMAL,

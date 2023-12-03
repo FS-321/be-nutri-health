@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const generateId = require('../utils/generateId');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -19,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
@@ -54,8 +55,17 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['admin', 'user']]
       }
     },
+    createdAt:{
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.Now 
+    },
+    updatedAt:{
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.Now 
+    },
     no_hp: {
       type: DataTypes.STRING
+
       // allowNull true secara default
     },
     foto_url: {

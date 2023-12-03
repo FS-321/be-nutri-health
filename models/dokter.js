@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const generateId = require('../utils/generateId');
 module.exports = (sequelize, DataTypes) => {
   class Dokter extends Model {
     static associate(models) {
@@ -21,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
     nama_depan: {
       type: DataTypes.STRING,

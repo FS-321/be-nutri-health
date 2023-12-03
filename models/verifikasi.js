@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Verifikasi.init({
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       references: {
         model: 'Users', // Should match the table name

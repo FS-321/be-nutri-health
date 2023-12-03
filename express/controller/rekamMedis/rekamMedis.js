@@ -10,9 +10,9 @@ module.exports = {
 
             if (!status) return res.status(400).send({ message: "invalid form" })
 
-            return res.status(200).send({ message: "creating makanan success" })
+            return res.status(200).send({ message: "creating rekaman success" })
         } catch (e) {
-            return res.status(500).send({ message: "something happen when creating Makanan" })
+            return res.status(500).send({ message: "something happen when creating rekaman" })
         }
     },
     async getAll(req, res) {

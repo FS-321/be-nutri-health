@@ -1,4 +1,5 @@
 'use strict';
+const generateUserId = require('../utils/generateId');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -20,7 +21,7 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'users',

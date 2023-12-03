@@ -10,13 +10,13 @@ const loginRoutes = require('./routes/login')
 const { authenticateToken, authenticateUser } = require('../authentication/authentication')
 const favoriteRouter = require('./routes/favorite')
 const rekamMedisRoutes = require('./routes/rekamMedis')
+const dashboardRoutes = require('./routes/dashboard')
 
 
 function fallbackRoute(req, res) {
     console.log("Route not found")
     return res.status(404).send({ message: "Error Resource not found or not login yet" })
 }
-
 
 module.exports = function (app, req, res) {
     const { role } = getDecodedToken(req, res)
@@ -31,6 +31,7 @@ module.exports = function (app, req, res) {
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
             app.use(authenticateToken, jadwalPraktikRouter.jadwalPraktikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
+            app.use(dashboardRoutes)
             // app.use('/*', fallbackRoute)
         case 'user':
             app.use(loginRoutes)

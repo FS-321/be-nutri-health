@@ -105,8 +105,8 @@ module.exports = {
 
             return res.status(200).send({ message: "creating makanan success" })
         } catch (e) {
-            console.log(e.message)
-            return res.status(500).send({ message: "something happen when creating Makanan" })
+            console.log('error',e.message)
+            return res.status(500).send({ message: "something happen when creating Makanan !" })
         }
     }
 

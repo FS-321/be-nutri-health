@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const generateId = require('../utils/generateId');
 module.exports = (sequelize, DataTypes) => {
   class DataRekamMedis extends Model {
     static associate(models) {
@@ -17,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     data_rekam_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     tanggal_periksa: {
       type: DataTypes.DATE,
@@ -27,20 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    nama_dokter: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    tanggal_lahir: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
     diagnosa: {
       type: DataTypes.STRING,
       allowNull: false
     },
     pasien_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: {
         model: 'User', 
         key: 'user_id',
@@ -55,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'data_rekam_medis',
     modelName: 'DataRekamMedis',
   });
   return DataRekamMedis;

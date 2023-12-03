@@ -332,7 +332,8 @@ response       :
 on error      : 404 jadwal not found
 ```
 
-<h5>Buat jadwal</h5>
+
+<h5>create jadwal</h5>
 
 ```
 Content-type   : json
@@ -346,7 +347,7 @@ body           :
     dokter_id : number
   }
 response      : succsessful message 
-on error      : 404 jadwal not found
+on error      : None
 ```
 
 <h3>Data Rekam Medis</h3>
@@ -436,6 +437,5 @@ response       :
   "total_poliklinik",
   "total_pasien"
 }
-
 ```
 

@@ -90,6 +90,8 @@ module.exports = {
         const  data  = req.body
         try {
             const status = await Makanan.update(data, { where: { makanan_id } })
+            
+            if(!status[0]) return res.status(404).send({message:"makanan not found"})
 
             return res.status(200).send(status)
         } catch (e) {

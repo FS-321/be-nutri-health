@@ -86,10 +86,10 @@ module.exports = {
     },
 
     async update(req, res) {
-        const id = req.params.id
-        const { gambar_makanan_url, data } = req.body
+        const makanan_id = req.params.id
+        const  data  = req.body
         try {
-            const status = await Makanan.update(data, { where: { makanan_id: id } })
+            const status = await Makanan.update(data, { where: { makanan_id } })
 
             return res.status(200).send(status)
         } catch (e) {

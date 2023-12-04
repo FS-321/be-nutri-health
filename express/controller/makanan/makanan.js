@@ -1,4 +1,4 @@
-const { Makanan, Favorit } = require('../../../models/')
+const { Makanan, Favorite } = require('../../../models/')
 const {literal } = require('sequelize')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 

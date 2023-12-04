@@ -166,6 +166,22 @@ body           : {
 response       : succesful message
 on error       : 404 dokter not found
 ```
+<h5>Search dokter</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/cari/dokter?keword=xxxxx
+- xxxx = adalah kata kunci
+body           : None
+response       : [
+  {
+    dokter_id,
+    ...attr user lainnya
+  }
+]
+
+```
 <h3>makanan</h3>
 <h5>get all pages</h5>
 
@@ -513,7 +529,7 @@ response       : succesfull message
 on error       : 404 User not found
 ```
 
-<h5>Search</h5>
+<h5>Search user/patient</h5>
 
 ```
 Content-type   : json
@@ -521,11 +537,11 @@ Headers        : Authorization Admin
 PUT            : api.nutripal.site/cari/user?keword=xxxxx
 - xxxx = adalah kata kunci
 body           : None
-response       : {
+response       : [
   {
     user_id,
     ...attr user lainnya
   }
-}
+]
 on error       : 404 User not found
 ```

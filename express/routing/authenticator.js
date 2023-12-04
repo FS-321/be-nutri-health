@@ -34,7 +34,7 @@ module.exports = function (app, req, res) {
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
             app.use(authenticateToken, userRoutes.userRoutesAdmin)
             app.use(dashboardRoutes)
-            app.use('/*', fallbackRoute)
+            // app.use('/*', fallbackRoute)
         case 'user':
             app.use(loginRoutes)
             app.use(dokterRoutes)
@@ -47,7 +47,7 @@ module.exports = function (app, req, res) {
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(authenticateToken, favoriteRouter)
-            app.use('/*', fallbackRoute)
+            // app.use('/*', fallbackRoute)
         default:
             app.use(loginRoutes)
             app.use(dokterRoutes)
@@ -57,7 +57,7 @@ module.exports = function (app, req, res) {
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
             app.use(layananRouter.layananRoutes)
-            app.use('/*', fallbackRoute)
+            // app.use('/*', fallbackRoute)
     }
 
 } 

@@ -21,7 +21,7 @@ function fallbackRoute(req, res) {
 
 module.exports = function (app, req, res) {
     const { role } = getDecodedToken(req, res)
-    console.log('ini role authenticator', role)
+    console.log('authenticator role :', role)
 
     switch (role) {
         case 'admin':

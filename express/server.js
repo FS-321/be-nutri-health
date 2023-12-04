@@ -1,14 +1,19 @@
 const express = require('express')
-// const authenticatorRoutes = require('./routing/authenticator')
 require('dotenv').config()
 const app = express()
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const authenticator = require('./routing/authenticator')
 const bodyParser = require('body-parser')
-const path = require('path')
 let rootRouter = null
+const rateLimit = require('express-rate-limit')
 
+const limiter = rateLimit({
+   windowMs : 5 * 1000,
+   max :100
+})
+
+app.use(limiter)
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.TOKENKEY))
 //{ credentials: true, origin: true }

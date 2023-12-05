@@ -58,7 +58,7 @@ module.exports = {
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
-        console.log(pasien_id)
+        console.log('ini rekam oleh user' , pasien_id)
         try {
             const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, where:{pasien_id} })
 

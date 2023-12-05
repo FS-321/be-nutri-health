@@ -1,6 +1,5 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
-const generateUserId = require('../utils/generateId');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('data_rekam_medis', {
@@ -20,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       pasien_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(255),
         references: {
           model: 'users', // name of the users table
           key: 'user_id',
@@ -30,12 +29,12 @@ module.exports = {
       },
       dokter_id: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'dokter', // name of the dokters table
-          key: 'dokter_id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        // references: {
+        //   model: 'dokter', // name of the dokters table
+        //   key: 'dokter_id',
+        // },
+        // onUpdate: 'CASCADE',
+        // onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

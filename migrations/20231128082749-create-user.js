@@ -6,7 +6,7 @@ module.exports = {
       user_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255)
       },
       nama_depan: {
         type: Sequelize.STRING,

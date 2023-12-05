@@ -9,6 +9,8 @@
 <li><a href="#favorite">Favorite</a></li>
 <li><a href="#jadwal">jadwal</a></li>
 <li><a href="#rekam-medis">Rekam Medis</a></li>
+<li><a href="#rekam-medis">Dashboard</a></li>
+<li><a href="#rekam-medis">User</a></li>
 </ul>
 
 ```

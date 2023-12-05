@@ -1,7 +1,24 @@
-
+const {literal}= require('sequelize')
 const {Layanan} = require('../../../models/')
 
 module.exports = {
+    async search(req, res) {
+        console.log('ini search layanan')
+        const keyword = (req.query.keyword).toLowerCase()
+        try {
+            const poliklinik = await Layanan.findAll({
+                where: literal(`LOWER(nama_layanan) LIKE '%${keyword}%' `)
+
+            })
+            return res.status(200).send(poliklinik)
+
+        } catch (e) {
+            console.log(e.message)
+            return res.status(500).send({ message: "something happen when fetching layanan" })
+        }
+
+
+    },
     async create(req,res){
         const form = req.body
         try{

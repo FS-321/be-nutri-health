@@ -9,8 +9,8 @@
 <li><a href="#favorite">Favorite</a></li>
 <li><a href="#jadwal">jadwal</a></li>
 <li><a href="#rekam-medis">Rekam Medis</a></li>
-<li><a href="#rekam-medis">Dashboard</a></li>
-<li><a href="#rekam-medis">User</a></li>
+<li><a href="#dashboard">Dashboard</a></li>
+<li><a href="#user">User</a></li>
 </ul>
 
 ```
@@ -517,7 +517,7 @@ response       : message berhasil di update
 on error      : 403 not login or not have access
 ```
 
-<h3>Data Dashboard<h3>
+<h3 id="dashboard">Data Dashboard<h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
 <h5>get dashboard data</h5>
@@ -538,7 +538,7 @@ response       :
 }
 ```
 
-<h3> User <h3>
+<h3 id="user"> User <h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
 <h5>get all user</h5>

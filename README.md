@@ -323,7 +323,7 @@ Content-type   : json
 Headers        : Authorization User Token
 GET            : api.nutripal.site/cari/favorite?keyword=xxx
 - xxx adalah keywrod
-body           : {pages,limit}
+body           : None
 response       : [
   {
     makanan_id

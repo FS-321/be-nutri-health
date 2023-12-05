@@ -33,8 +33,7 @@ module.exports = {
         jwt.verify(token, process.env.TOKENKEY, (error, decoded) => {
             if (error) {
                  res.status(401).send({ message: "Token either modified or expired" })
-                 // jangan lupa ganti link redirect ke home
-                res.redirect('https://www.youtube.com')
+                res.redirect('https://nutrihealth.verce.app')
                 return
             }
             if (decoded) next()

@@ -1,5 +1,7 @@
 # NutriHealth web service
 
+<a href="#rekam-medis">Rekam Medis</a>
+
 ```
 on expired or invalid token : 401 token either modified or invalid message, redirect to homepage
 ```
@@ -397,7 +399,24 @@ response      : succsessful message
 on error      : None
 ```
 
-<h3>Data Rekam Medis</h3>
+<h3 id="rekam-medis">Data Rekam Medis</h3>
+<h5>Search rekam medis</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/cari/rekam-medis?keyword=xxx
+-xxx adalah query keyword
+body           : {pages,limit}
+response       : [
+  {
+    data_rekam_id
+    ...atr lainnya
+  }
+]
+on error      : 401 not login or not have access 
+```
+
 <h5>get all pages</h5>
 
 ```

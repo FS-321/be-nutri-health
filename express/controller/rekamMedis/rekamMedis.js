@@ -54,7 +54,7 @@ module.exports = {
         }
     },
     async getAllbyUser(req, res) {
-        const pasien_id = getDecodedToken(req, res)['user_id']
+        const pasien_id = getDecodedToken(req, res)['user_id'].toString()
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize

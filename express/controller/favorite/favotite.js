@@ -30,7 +30,7 @@ module.exports = {
 
     async search(req, res) {
         const keyword = req.query.keyword
-        const user_id = getDecodedToken(req, res)['user_id']
+        const user_id = getDecodedToken(req, res)['user_id'].toString()
         try {
             
             const makanan = await Favorite.findAll({
@@ -42,10 +42,6 @@ module.exports = {
                     }
                 }
             })            
-
-            // const makanan = await makanan.findAll({where:{nama_makanan:keyword}})            
-
-            // const favorite = await Favorite.findAll({ where: {  user_id, nama_makanan : makanan.map(e=>e.makanan_id)} })
 
             return res.status(200).send(makanan)
         } catch (e) {

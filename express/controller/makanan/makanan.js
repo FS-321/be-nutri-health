@@ -87,7 +87,9 @@ module.exports = {
 
     async update(req, res) {
         const makanan_id = req.params.id
-        const  data  = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         try {
             const status = await Makanan.update(data, { where: { makanan_id } })
             

@@ -73,11 +73,13 @@ module.exports = {
     },
 
     async update(req, res) {
-        const data = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         const id = req.params.id
         try {
             const status = await Dokter.update(data, { where: { dokter_id: id } })
-
+                
             if (!status) return res.status(404).send({ message: "doctor not found" })
 
             return res.status(200).send({ message: "update succesful" })

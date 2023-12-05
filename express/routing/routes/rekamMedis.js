@@ -11,5 +11,6 @@ rekamMedisRoutesAdmin.get('/rekam-medis/:id', rekamMedis.getOne)
 rekamMedisRoutesAdmin.post('/rekam-medis',rekamMedis.create)
 rekamMedisRoutesAdmin.delete('/rekam-medis/:id', rekamMedis.deleteOne)
 rekamMedisRoutesAdmin.put('/rekam-medis/:id',rekamMedis.update)
+rekamMedisRoutesAdmin.get('/cari/rekam-medis', rekamMedis.search)
 
 module.exports = {rekamMedisRoutesUser, rekamMedisRoutesAdmin}

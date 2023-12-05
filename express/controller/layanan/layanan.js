@@ -1,4 +1,5 @@
 const {literal}= require('sequelize')
+
 const {Layanan} = require('../../../models/')
 
 module.exports = {
@@ -57,7 +58,9 @@ module.exports = {
     },
 
     async update(req, res) {
-        const data = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         const id = req.params.id
         try {
             const status = await Layanan.update(data, { where: { layanan_id : id } })

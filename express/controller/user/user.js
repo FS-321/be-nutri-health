@@ -28,6 +28,7 @@ module.exports = {
 
             if (!status) return res.status(409).send({ message: "email already registered" })
 
+
             return res.status(200).send({ message: "create user successful" })
         } catch (e) {
             return res.stats(500).send({ message: "something happen when creating user" })
@@ -68,8 +69,11 @@ module.exports = {
     },
 
     async update(req, res) {
-        const data = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         const updated_user = req.params.id ? req.params.id : getDecodedToken(req, res)['user_id']
+
         try {
             const status = await User.update(data, { where: { user_id: updated_user } })
 

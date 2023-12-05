@@ -1,7 +1,31 @@
-const { DataRekamMedis } = require('../../../models/')
+const { DataRekamMedis, User } = require('../../../models/')
+const {literal }= require('sequelize')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
+    async search(req, res) {
+        const keyword = (req.query.keyword).toLowerCase()
+        try {
+            const user = await User.findAll({
+                where: literal(`LOWER(nama_depan) LIKE '%${keyword}%' OR LOWER(nama_belakang)LIKE '%${keyword}%'`),
+                attributes: ['user_id']
+            })
+            
+            console.log(user.map(e=>e.user_id))            
+
+            const pasien = await DataRekamMedis.findAll({
+                where:{ pasien_id:user.map(res => res.user_id) }
+            })
+                        
+            return res.status(200).send(pasien)
+
+        } catch (e) {
+            console.log(e.message)
+            return res.status(500).send({ message: "something happen when fetching pasien" })
+        }
+
+
+    },
     async create(req, res) {
         const form = req.body
 
@@ -66,9 +90,11 @@ module.exports = {
 
     async update(req, res) {
         const id = req.params.id
-        const data = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         try {
-            const status = await DataRekamMedis.update(DataRekamMedis, { where: { data_rekam_id: id } })
+            const status = await DataRekamMedis.update(data, { where: { data_rekam_id: id } })
 
             return res.status(200).send(status)
         } catch (e) {

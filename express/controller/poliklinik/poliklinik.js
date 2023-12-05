@@ -71,7 +71,9 @@ module.exports = {
 
     async update(req, res) {
         const id = req.params.id
-        const data = req.body
+        const dateNow = new Date()
+        let data = req.body
+        data = {updatedAt: dateNow,...data}
         try {
             const status = await Poliklinik.update(data, { where: { poli_id: id } })
 

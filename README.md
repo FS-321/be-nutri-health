@@ -11,6 +11,7 @@
 <li><a href="#rekam-medis">Rekam Medis</a></li>
 <li><a href="#dashboard">Dashboard</a></li>
 <li><a href="#user">User</a></li>
+<li><a href="#layanan">Layanan</a></li>
 </ul>
 
 ```
@@ -629,3 +630,80 @@ response       : [
 ]
 on error       : 404 User not found
 ```
+
+
+<h3 id="layanan"> Layanan <h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+<h5>get all layanan</h5>
+
+```
+Content-type   : json
+Headers        : None
+GET            : api.nutripal.site/layanan/
+body           : {pages,limit}
+response       : [
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+]
+```
+
+<h5>get one</h5>
+
+```
+Content-type   : json
+Headers        : None
+GET            : api.nutripal.site/layanan/:id
+body           : None
+response       : 
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+
+```
+
+<h5>update layanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/layanan/:id:
+body           : 
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>delete layanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+DELETE         : api.nutripal.site/layanan/:id:
+body           : None
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>Search user/patient</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/cari/layanan?keword=xxxxx
+- xxxx = adalah kata kunci
+body           : None
+response       : [
+  {
+    layanan_id : number,
+    ...attr user lainnya
+  }
+]
+on error       : 404 User not found

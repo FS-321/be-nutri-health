@@ -1,5 +1,5 @@
 const { DataRekamMedis, User } = require('../../../models/')
-const {literal }= require('sequelize')
+const { literal } = require('sequelize')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
@@ -10,13 +10,13 @@ module.exports = {
                 where: literal(`LOWER(nama_depan) LIKE '%${keyword}%' OR LOWER(nama_belakang)LIKE '%${keyword}%'`),
                 attributes: ['user_id']
             })
-            
-            console.log(user.map(e=>e.user_id))            
+
+            console.log(user.map(e => e.user_id))
 
             const pasien = await DataRekamMedis.findAll({
-                where:{ pasien_id:user.map(res => res.user_id) }
+                where: { pasien_id: user.map(res => res.user_id) }
             })
-                        
+
             return res.status(200).send(pasien)
 
         } catch (e) {
@@ -28,14 +28,24 @@ module.exports = {
     },
     async create(req, res) {
         const form = req.body
-
+        const pasien_id = (req.body.pasien_id).toString()
+        console.log(pasien_id)
         try {
-            const status = await DataRekamMedis.create(form)
+            const userExists = await User.findByPk(pasien_id);
+
+            if (!userExists) {
+                console.log('User with pasien_id does not exist.');
+                // Handle the case where the user does not exist
+                // (e.g., return an error response or redirect)
+                return;
+            }
+            const status = await DataRekamMedis.create({ pasien_id, ...form })
 
             if (!status) return res.status(400).send({ message: "invalid form" })
 
             return res.status(200).send({ message: "creating rekaman success" })
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when creating rekaman" })
         }
     },
@@ -44,7 +54,8 @@ module.exports = {
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize,
+            const rekam_medis = await DataRekamMedis.findAll({
+                offset, limit: pageSize,
             })
 
             return res.status(200).send(rekam_medis)
@@ -58,9 +69,9 @@ module.exports = {
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
-        console.log('ini rekam oleh user' , pasien_id)
+        console.log('ini rekam oleh user', pasien_id)
         try {
-            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, where:{pasien_id} })
+            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, where: { pasien_id } })
 
             return res.status(200).send(rekam_medis)
         } catch (e) {
@@ -96,7 +107,7 @@ module.exports = {
         const id = req.params.id
         const dateNow = new Date()
         let data = req.body
-        data = {updatedAt: dateNow,...data}
+        data = { updatedAt: dateNow, ...data }
         try {
             const status = await DataRekamMedis.update(data, { where: { data_rekam_id: id } })
 

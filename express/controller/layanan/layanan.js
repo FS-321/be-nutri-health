@@ -42,6 +42,7 @@ module.exports = {
             return res.status(200).send(layanan)
 
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "something happen when fetching layanan" })
         }
     },

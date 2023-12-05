@@ -1,10 +1,23 @@
 # NutriHealth web service
 
+<ul id="content">
+<li><a href="#login">Login</a></li>
+<li><a href="#register">Register</a></li>
+<li><a href="#poliklinik">Poliklinik</a></li>
+<li><a href="#dokter">Dokter</a></li>
+<li><a href="#makanan">Makanan</a></li>
+<li><a href="#favorite">Favorite</a></li>
+<li><a href="#jadwal">jadwal</a></li>
+<li><a href="#rekam-medis">Rekam Medis</a></li>
+</ul>
+
 ```
 on expired or invalid token : 401 token either modified or invalid message, redirect to homepage
 ```
 
-<h3>Login</h3>
+<h3 id="login">Login</h3> 
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 
 ```
 content-type  : json
@@ -14,7 +27,9 @@ response      : {message gagal atau berhasil, user attribute dan rolenya, newTok
 on error      : 400 wrong email or password
 ```
 
-<h3>Register</h3>
+<h3 id="register">Register</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 
 ```
 Content-type   : json
@@ -27,7 +42,10 @@ on error       : 409 email already registered
 ```
 
 
-<h3>Poliklinik</h3>
+<h3 id="poliklinik">Poliklinik</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+
 <h5>get all pages</h5>
 
 ```
@@ -88,7 +106,25 @@ body           : {
 }
 on error       : 404 poliklinik not found
 ```
-<h3>dokter</h3>
+<h5>Search poliklinik</h5>
+
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/poliklinik?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+]
+```
+
+<h3 id="dokter">dokter</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+
 <h5>get all pages</h5>
 
 ```
@@ -109,6 +145,7 @@ response       : [
     ]
 ]
 ```
+
 <h5>get one</h5>
 
 ```
@@ -166,7 +203,26 @@ body           : {
 response       : succesful message
 on error       : 404 dokter not found
 ```
-<h3>makanan</h3>
+<h5>Search dokter</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/cari/dokter?keword=xxxxx
+- xxxx = adalah kata kunci
+body           : None
+response       : [
+  {
+    dokter_id,
+    ...attr user lainnya
+  }
+]
+
+```
+<h3 id="makanan">makanan</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+
 <h5>get all pages</h5>
 
 ```
@@ -240,7 +296,10 @@ body           : {
 response       : {succesfull message}
 on error       : 404 favorite not found
 ```
+
 <h3>Favorite</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 <h5>get all pages</h5>
 
 ```
@@ -255,6 +314,7 @@ response       : [
   }
 ]
 ```
+
 <h5>get one</h5>
 
 ```
@@ -271,8 +331,23 @@ response       : [
 
 ]
 ```
+<h5>Search makanan</h5>
 
-<h3>Jadwal Praktik</h3>
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/makanan?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+```
+  
+<h3 id="jadwal">Jadwal Praktik</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 <h5>get all pages</h5>
 
 ```
@@ -350,13 +425,32 @@ response      : succsessful message
 on error      : None
 ```
 
-<h3>Data Rekam Medis</h3>
+<h3 id="rekam-medis">Data Rekam Medis</h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+<h5>Search rekam medis</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/cari/rekam-medis?keyword=xxx
+-xxx adalah query keyword
+body           : {pages,limit}
+response       : [
+  {
+    data_rekam_id
+    ...atr lainnya
+  }
+]
+on error      : 401 not login or not have access 
+```
+
 <h5>get all pages</h5>
 
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/data-rekam-medis
+GET            : api.nutripal.site/rekam-medis
 body           : {pages,limit}
 response       : [
   {
@@ -371,7 +465,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/data-rekam-medis/:id
+GET            : api.nutripal.site/rekam-medis/:id
 body           : {pages,limit}
 response       : 
   {
@@ -386,7 +480,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/data-rekam-medis
+GET            : api.nutripal.site/rekam-medis
 body           : {
   tanggal_periksa: Date,
   keluhan: string,
@@ -409,7 +503,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/data-rekam-medis/:id
+PUT            : api.nutripal.site/rekam-medis/:id
 body           : {
   user_id : string,
   dokter_id : number,
@@ -422,6 +516,8 @@ on error      : 403 not login or not have access
 ```
 
 <h3>Data Dashboard<h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 <h5>get dashboard data</h5>
 
 ```
@@ -441,6 +537,8 @@ response       :
 ```
 
 <h3> User <h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
 <h5>get all user</h5>
 
 ```
@@ -513,19 +611,19 @@ response       : succesfull message
 on error       : 404 User not found
 ```
 
-<h5>Search</h5>
+<h5>Search user/patient</h5>
 
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/cari/user?keword=xxxxx
+GET            : api.nutripal.site/cari/user?keword=xxxxx
 - xxxx = adalah kata kunci
 body           : None
-response       : {
+response       : [
   {
     user_id,
     ...attr user lainnya
   }
-}
+]
 on error       : 404 User not found
 ```

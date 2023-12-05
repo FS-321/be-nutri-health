@@ -5,7 +5,7 @@ const makananRoutesUser = express.Router()
 const makanan = require('../../controller/makanan/makanan')
 
 
-makananRoutes.get('/makanan/cari', makanan.search)
+makananRoutes.get('/cari/makanan', makanan.search)
 makananRoutes.get('/makanan', makanan.getAll)
 makananRoutes.get('/makanan/:id', makanan.getOne)
 

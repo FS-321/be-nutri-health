@@ -44,20 +44,22 @@ module.exports = {
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize })
+            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize,
+            where:{user_id}
+            })
 
             return res.status(200).send(rekam_medis)
         } catch (e) {
             res.status(500).send({ message: "something happen when fetching rekam_medis" })
         }
     },
-    async getAllUser(req, res) {
+    async getAllbyUser(req, res) {
         const pasien_id = getDecodedToken(req, res)['user_id']
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, pasien_id })
+            const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, where:{pasien_id} })
 
             return res.status(200).send(rekam_medis)
         } catch (e) {

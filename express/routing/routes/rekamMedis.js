@@ -3,7 +3,7 @@ const rekamMedisRoutesAdmin = express.Router()
 const rekamMedisRoutesUser = express.Router()
 const rekamMedis = require('../../controller/rekamMedis/rekamMedis')
 
-rekamMedisRoutesUser.get('/rekam-medis',rekamMedis.getAllUser)
+rekamMedisRoutesUser.get('/rekam-medis',rekamMedis.getAllbyUser)
 rekamMedisRoutesUser.get('/rekam-medis/:id', rekamMedis.getOneUser)
 
 rekamMedisRoutesAdmin.get('/rekam-medis',rekamMedis.getAll)

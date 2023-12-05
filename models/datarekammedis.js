@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     pasien_id: {
       type: DataTypes.STRING,
       references: {
-        model: 'User', 
+        model: 'users', 
         key: 'user_id',
       }
     },

@@ -1,14 +1,19 @@
 const express = require('express')
-// const authenticatorRoutes = require('./routing/authenticator')
 require('dotenv').config()
 const app = express()
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const authenticator = require('./routing/authenticator')
 const bodyParser = require('body-parser')
-const path = require('path')
 let rootRouter = null
+const rateLimit = require('express-rate-limit')
 
+const limiter = rateLimit({
+   windowMs : 5 * 1000,
+   max :100
+})
+
+app.use(limiter)
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.TOKENKEY))
 //{ credentials: true, origin: true }
@@ -19,45 +24,25 @@ app.use('/', (req, res, next) => {
     next()
 })
 
-// gambar
-// app.use(express.static(path.join(__dirname, 'public')));
 
-// // Set up storage for multer
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'public/images/'); // Store the images in './public/images/'
-//     },
-//     filename: function (req, file, cb) {
-//         const ext = path.extname(file.originalname);
-//         cb(null, file.fieldname + '-' + Date.now() + ext);
-//     },
+// // Serve static files from the "public" directory
+// app.use(express.static('public'));
+
+// // Handle POST requests to the /upload endpoint
+// app.post('/upload', upload.single('image'), (req, res) => {
+//     // 'image' is the name attribute of the file input in the form
+
+//     // Access the uploaded file information
+//     const { filename, path } = req.file;
+
+//     // You can save this information to a database or perform other actions
+//     // based on your application's requirements.
+
+//     res.json({
+//         filename: filename,
+//         path: path
+//     });
 // });
-
-// const upload = multer({ storage: storage });
-
-// // Handle POST request with image upload
-// app.post('/upload/:table/:id', upload.single('image'), async (req, res) => {
-//     if (!req.file) {
-//         return res.status(400).send('No file uploaded.');
-//     }
-
-//     const { filename, path, mimetype } = req.file;
-//     const { table, id } = req.params;
-
-//     try {
-//         sequelize.query(`UPDATE ${table} SET  = :filename WHERE id = :userIdToUpdate`, {
-//             replacements: { newUsername, userIdToUpdate },
-//             type: Sequelize.QueryTypes.UPDATE
-//         })
-
-
-//         res.send(`File uploaded and saved in the database: ${filename}`);
-//     } catch (error) {
-//         console.error('Error saving image in the database:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
-
 
 app.listen(process.env.EXPRESS_PORT, (req, res) => {
     console.log("server started")

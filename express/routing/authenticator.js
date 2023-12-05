@@ -11,6 +11,7 @@ const { authenticateToken, authenticateUser } = require('../authentication/authe
 const favoriteRouter = require('./routes/favorite')
 const rekamMedisRoutes = require('./routes/rekamMedis')
 const dashboardRoutes = require('./routes/dashboard')
+const userRoutes = require('../routing/routes/user')
 
 
 function fallbackRoute(req, res) {
@@ -20,7 +21,7 @@ function fallbackRoute(req, res) {
 
 module.exports = function (app, req, res) {
     const { role } = getDecodedToken(req, res)
-    console.log('ini role authenticator', role)
+    console.log('authenticator role :', role)
 
     switch (role) {
         case 'admin':
@@ -31,6 +32,7 @@ module.exports = function (app, req, res) {
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
             app.use(authenticateToken, jadwalPraktikRouter.jadwalPraktikRoutesAdmin)
             app.use(authenticateToken, layananRouter.layananRoutesAdmin)
+            app.use(authenticateToken, userRoutes.userRoutesAdmin)
             app.use(dashboardRoutes)
             // app.use('/*', fallbackRoute)
         case 'user':
@@ -39,12 +41,13 @@ module.exports = function (app, req, res) {
             app.use(registerRoutes)
             app.use(authenticateToken, makananRouter.makananRoutesUser)
             app.use(authenticateToken,rekamMedisRoutes.rekamMedisRoutesUser)
+            app.use(authenticateToken, userRoutes.userRoutesUser)
             app.use(poliklinikRouter.poliklinikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(jadwalPraktikRouter.jadwalPraktikRoutes)
             app.use(layananRouter.layananRoutes)
             app.use(authenticateToken, favoriteRouter)
-            app.use('/*', fallbackRoute)
+            // app.use('/*', fallbackRoute)
         default:
             app.use(loginRoutes)
             app.use(dokterRoutes)

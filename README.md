@@ -88,6 +88,21 @@ body           : {
 }
 on error       : 404 poliklinik not found
 ```
+<h5>Search poliklinik</h5>
+
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/poliklinik?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+]
+```
+
 <h3>dokter</h3>
 <h5>get all pages</h5>
 
@@ -109,6 +124,7 @@ response       : [
     ]
 ]
 ```
+
 <h5>get one</h5>
 
 ```
@@ -171,7 +187,7 @@ on error       : 404 dokter not found
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/cari/dokter?keword=xxxxx
+GET            : api.nutripal.site/cari/dokter?keword=xxxxx
 - xxxx = adalah kata kunci
 body           : None
 response       : [
@@ -256,6 +272,7 @@ body           : {
 response       : {succesfull message}
 on error       : 404 favorite not found
 ```
+
 <h3>Favorite</h3>
 <h5>get all pages</h5>
 
@@ -271,6 +288,7 @@ response       : [
   }
 ]
 ```
+
 <h5>get one</h5>
 
 ```
@@ -287,7 +305,20 @@ response       : [
 
 ]
 ```
+<h5>Search makanan</h5>
 
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/makanan?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+```
+  
 <h3>Jadwal Praktik</h3>
 <h5>get all pages</h5>
 
@@ -534,7 +565,7 @@ on error       : 404 User not found
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/cari/user?keword=xxxxx
+GET            : api.nutripal.site/cari/user?keword=xxxxx
 - xxxx = adalah kata kunci
 body           : None
 response       : [

@@ -37,7 +37,7 @@ const validateFormRegister = (form) => {
 }
 
 module.exports = async function (req, res, next) {
-
+        console.log('registered fn')
         try {
                 const user_id = generateId()
                 console.log('ini register')

@@ -71,8 +71,8 @@ module.exports = {
     },
     async getAllbyUser(req, res) {
         const pasien_id = getDecodedToken(req, res)['user_id'].toString()
-        const page = req.query.pages || 1
-        const pageSize = req.query.limit || 10
+        const page = +req.query.pages || 1
+        const pageSize = +req.query.limit || 10
         const offset = (page - 1) * pageSize
         console.log('ini rekam oleh user', pasien_id, typeof pasien_id)
         try {

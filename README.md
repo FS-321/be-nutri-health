@@ -403,7 +403,7 @@ on error      : None
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/data-rekam-medis
+GET            : api.nutripal.site/rekam-medis
 body           : {pages,limit}
 response       : [
   {
@@ -418,7 +418,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/data-rekam-medis/:id
+GET            : api.nutripal.site/rekam-medis/:id
 body           : {pages,limit}
 response       : 
   {
@@ -433,7 +433,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/data-rekam-medis
+GET            : api.nutripal.site/rekam-medis
 body           : {
   tanggal_periksa: Date,
   keluhan: string,
@@ -456,7 +456,7 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/data-rekam-medis/:id
+PUT            : api.nutripal.site/rekam-medis/:id
 body           : {
   user_id : string,
   dokter_id : number,

@@ -9,6 +9,9 @@
 <li><a href="#favorite">Favorite</a></li>
 <li><a href="#jadwal">jadwal</a></li>
 <li><a href="#rekam-medis">Rekam Medis</a></li>
+<li><a href="#dashboard">Dashboard</a></li>
+<li><a href="#user">User</a></li>
+<li><a href="#layanan">Layanan</a></li>
 </ul>
 
 ```
@@ -222,6 +225,19 @@ response       : [
 <h3 id="makanan">makanan</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
+<h5>Search makanan</h5>
+
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/makanan?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+```
 
 <h5>get all pages</h5>
 
@@ -300,6 +316,22 @@ on error       : 404 favorite not found
 <h3>Favorite</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
+<h5>search user favorite makanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization User Token
+GET            : api.nutripal.site/cari/favorite?keyword=xxx
+- xxx adalah keywrod
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+]
+```
+
 <h5>get all pages</h5>
 
 ```
@@ -327,23 +359,9 @@ response       : [
     makanan_id
     ...atr lainnya
   }
-
-
 ]
 ```
-<h5>Search makanan</h5>
 
-```
-Content-type   : json
-GET            : api.nutripal.site/cari/makanan?keyword=xxx
-- xxx adalah query keyword
-body           : None
-response       : [
-  {
-    makanan_id
-    ...atr lainnya
-  }
-```
   
 <h3 id="jadwal">Jadwal Praktik</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
@@ -515,7 +533,7 @@ response       : message berhasil di update
 on error      : 403 not login or not have access
 ```
 
-<h3>Data Dashboard<h3>
+<h3 id="dashboard">Data Dashboard<h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
 <h5>get dashboard data</h5>
@@ -536,7 +554,7 @@ response       :
 }
 ```
 
-<h3> User <h3>
+<h3 id="user"> User <h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
 <h5>get all user</h5>
@@ -627,3 +645,80 @@ response       : [
 ]
 on error       : 404 User not found
 ```
+
+
+<h3 id="layanan"> Layanan <h3>
+<a href="#content" style="text-decoration:none;"> top  </a>
+
+<h5>get all layanan</h5>
+
+```
+Content-type   : json
+Headers        : None
+GET            : api.nutripal.site/layanan/
+body           : {pages,limit}
+response       : [
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+]
+```
+
+<h5>get one</h5>
+
+```
+Content-type   : json
+Headers        : None
+GET            : api.nutripal.site/layanan/:id
+body           : None
+response       : 
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+
+```
+
+<h5>update layanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+PUT            : api.nutripal.site/layanan/:id:
+body           : 
+  {
+    layanan_id : number,
+    ...attr lainnya user
+  }
+
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>delete layanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+DELETE         : api.nutripal.site/layanan/:id:
+body           : None
+response       : succesfull message
+on error       : 404 User not found
+```
+
+<h5>Search user/patient</h5>
+
+```
+Content-type   : json
+Headers        : Authorization Admin
+GET            : api.nutripal.site/cari/layanan?keword=xxxxx
+- xxxx = adalah kata kunci
+body           : None
+response       : [
+  {
+    layanan_id : number,
+    ...attr user lainnya
+  }
+]
+on error       : 404 User not found

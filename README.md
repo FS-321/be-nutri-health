@@ -1,12 +1,21 @@
 # NutriHealth web service
 
-<a href="#rekam-medis">Rekam Medis</a>
+<ul>
+<li><a href="#login">Login</a></li>
+<li><a href="#register">Register</a></li>
+<li><a href="#poliklinik">Poliklinik</a></li>
+<li><a href="#dokter">Dokter</a></li>
+<li><a href="#makanan">Makanan</a></li>
+<li><a href="#favorite">Favorite</a></li>
+<li><a href="#jadwal">jadwal</a></li>
+<li><a href="#rekam-medis">Rekam Medis</a></li>
+</ul>
 
 ```
 on expired or invalid token : 401 token either modified or invalid message, redirect to homepage
 ```
 
-<h3>Login</h3>
+<h3 id="login">Login</h3>
 
 ```
 content-type  : json
@@ -16,7 +25,7 @@ response      : {message gagal atau berhasil, user attribute dan rolenya, newTok
 on error      : 400 wrong email or password
 ```
 
-<h3>Register</h3>
+<h3 id="register">Register</h3>
 
 ```
 Content-type   : json
@@ -29,7 +38,7 @@ on error       : 409 email already registered
 ```
 
 
-<h3>Poliklinik</h3>
+<h3 id="poliklinik">Poliklinik</h3>
 <h5>get all pages</h5>
 
 ```
@@ -105,7 +114,7 @@ response       : [
 ]
 ```
 
-<h3>dokter</h3>
+<h3 id="dokter">dokter</h3>
 <h5>get all pages</h5>
 
 ```
@@ -200,7 +209,7 @@ response       : [
 ]
 
 ```
-<h3>makanan</h3>
+<h3 id="makanan">makanan</h3>
 <h5>get all pages</h5>
 
 ```
@@ -321,7 +330,7 @@ response       : [
   }
 ```
   
-<h3>Jadwal Praktik</h3>
+<h3 id="jadwal">Jadwal Praktik</h3>
 <h5>get all pages</h5>
 
 ```

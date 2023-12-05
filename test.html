@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <input tpye="input" id="email"/>
+        <input type="password" id="password"/>
+
+        <button id="btn">click</button>
+
+
+        <script>
+            const input = document.getElementById('email')
+            const password = document.getElementById('password')
+            const button = document.getElementById('btn')
+
+            function kirim() {
+
+                fetch('http://localhost:3000/login', {
+                    method: "POST",
+
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(
+                        {email: "john.doe@example.com", password: "456"}
+                    )
+                }).then(e => e.json()).then(e => console.log(e))
+            }
+
+            button.addEventListener('click', () => {
+                console.log('clic')
+                kirim()
+            })
+        </script>
+</body>
+</html>

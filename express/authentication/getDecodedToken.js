@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken')
-const getCookiesToken = require('./getCookiesToken')
+const getAuthToken = require('./getAuthToken')
 require('dotenv').config()
 module.exports = function (req, res) {
-    const token = getCookiesToken(req) 
+    const token = getAuthToken(req)
     try {
         const decodedToken = jwt.verify(token, process.env.TOKENKEY)
         return decodedToken
     }
     catch (e) {
-        return res.status(500).send({ message: "Something happen in server 😖" })
+        return {role:'guest'} 
     }
 } 

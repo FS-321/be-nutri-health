@@ -1,3 +1,5 @@
+
+const { literal , Sequelize} = require('sequelize')
 const { Favorite, Makanan } = require('../../../models')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 
@@ -29,22 +31,28 @@ module.exports = {
     },
 
     async search(req, res) {
-        const keyword = req.query.keyword
+        const keyword = (req.query.keyword).toLowerCase()
         const user_id = getDecodedToken(req, res)['user_id'].toString()
         try {
-            
-            const makanan = await Favorite.findAll({
-                where : {user_id},
-                includes: {
-                    model : Makanan,
-                    where : {
-                        nama_makanan : keyword
-                    }
-                }
-            })            
 
+            const favorite = await Favorite.findAll({
+                where: { user_id },
+                attributes: ['makanan_id']
+            })
+
+            const makanan = await Makanan.findAll({
+                where: {
+                    nama_makanan: {
+                        [Sequelize.Op.like]: `%${keyword}%`,
+                    },
+                    makanan_id: {
+                        [Sequelize.Op.in]: favorite.map(e => e.makanan_id),
+                    },
+                }
+            })
             return res.status(200).send(makanan)
         } catch (e) {
+            console.log(e.message)
             return res.status(500).send({ message: "Something error when fetchind favorite" })
         }
     },

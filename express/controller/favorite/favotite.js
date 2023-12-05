@@ -31,11 +31,16 @@ module.exports = {
     },
 
     async search(req, res) {
+        let pages = +req.query.pages || 1
+        let limit = +req.query.limit || 10
+        
+        let offset = (pages-1) * limit
         const keyword = (req.query.keyword).toLowerCase()
         const user_id = getDecodedToken(req, res)['user_id'].toString()
         try {
 
             const favorite = await Favorite.findAll({
+                offset,limit,
                 where: { user_id },
                 attributes: ['makanan_id']
             })

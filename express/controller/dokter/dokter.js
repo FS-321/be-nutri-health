@@ -3,10 +3,15 @@ const { Dokter, JadwalPraktik } = require('../../../models')
 
 module.exports = {
     async search(req, res) {
+        let pages = +req.query.pages || 1
+        let limit = +req.query.limit || 10
+        
+        let offset = (pages-1) * limit
         const keyword = (req.query.keyword).toLowerCase()
         console.log(keyword)
         try {
             const dokter = await Dokter.findAll({
+                limit,offset,
                 where: literal(`LOWER(nama_depan) LIKE '%${keyword}%' OR LOWER(nama_belakang)LIKE '%${keyword}%'`)
 
             })

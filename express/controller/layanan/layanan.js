@@ -4,10 +4,15 @@ const {Layanan} = require('../../../models/')
 
 module.exports = {
     async search(req, res) {
+        let pages = +req.query.pages || 1
+        let limit = +req.query.limit || 10
+        
+        let offset = (pages-1) * limit
         console.log('ini search layanan')
         const keyword = (req.query.keyword).toLowerCase()
         try {
             const poliklinik = await Layanan.findAll({
+                offset,limit,
                 where: literal(`LOWER(nama_layanan) LIKE '%${keyword}%' `)
 
             })

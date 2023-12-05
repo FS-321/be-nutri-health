@@ -4,9 +4,14 @@ const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
     async search(req, res) {
+        let pages = +req.query.pages || 1
+        let limit = +req.query.limit || 10
+        
+        let offset = (pages-1) * limit
         const keyword = (req.query.keyword).toLowerCase()
         try {
             const user = await User.findAll({
+                limit,offset,
                 where: literal(`LOWER(nama_depan) LIKE '%${keyword}%' OR LOWER(nama_belakang)LIKE '%${keyword}%'`),
                 attributes: ['user_id']
             })

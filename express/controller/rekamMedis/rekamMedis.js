@@ -45,11 +45,11 @@ module.exports = {
         const offset = (page - 1) * pageSize
         try {
             const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize,
-            where:{user_id}
             })
 
             return res.status(200).send(rekam_medis)
         } catch (e) {
+            console.log(e.message)
             res.status(500).send({ message: "something happen when fetching rekam_medis" })
         }
     },
@@ -58,11 +58,13 @@ module.exports = {
         const page = req.body.pages || 1
         const pageSize = req.body.limit || 10
         const offset = (page - 1) * pageSize
+        console.log(pasien_id)
         try {
             const rekam_medis = await DataRekamMedis.findAll({ offset, limit: pageSize, where:{pasien_id} })
 
             return res.status(200).send(rekam_medis)
         } catch (e) {
+            console.log(e.message)
             res.status(500).send({ message: "something happen when fetching rekam_medis" })
         }
     },

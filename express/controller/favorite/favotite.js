@@ -1,14 +1,14 @@
-const { Favorite } = require('../../../models')
+const { Favorite, Makanan } = require('../../../models')
 const getDecodedToken = require('../../authentication/getDecodedToken')
 
 module.exports = {
     async getAll(req, res) {
-        const user_id = getDecodedToken(req,res)['user_id']
+        const user_id = getDecodedToken(req, res)['user_id']
         const page = req.query.pages || 1
         const pageSize = req.query.limit || 10
         const offset = (page - 1) * pageSize
         try {
-            const favorite = await Favorite.findAll({offset,limit:pageSize,where:{user_id}})
+            const favorite = await Favorite.findAll({ offset, limit: pageSize, where: { user_id } })
 
             return res.status(200).send(favorite)
 
@@ -20,9 +20,34 @@ module.exports = {
     async getOne(req, res) {
         const id = req.params.id
         try {
-            const favorite = await Favorite.findOne({ where: { favorite_id : id } })
+            const favorite = await Favorite.findOne({ where: { favorite_id: id } })
 
             return res.status(200).send(favorite)
+        } catch (e) {
+            return res.status(500).send({ message: "Something error when fetchind favorite" })
+        }
+    },
+
+    async search(req, res) {
+        const keyword = req.query.keyword
+        const user_id = getDecodedToken(req, res)['user_id']
+        try {
+            
+            const makanan = await Favorite.findAll({
+                where : {user_id},
+                includes: {
+                    model : Makanan,
+                    where : {
+                        nama_makanan : keyword
+                    }
+                }
+            })            
+
+            // const makanan = await makanan.findAll({where:{nama_makanan:keyword}})            
+
+            // const favorite = await Favorite.findAll({ where: {  user_id, nama_makanan : makanan.map(e=>e.makanan_id)} })
+
+            return res.status(200).send(makanan)
         } catch (e) {
             return res.status(500).send({ message: "Something error when fetchind favorite" })
         }
@@ -31,10 +56,10 @@ module.exports = {
     async update(req, res) {
         const dateNow = new Date()
         let data = req.body
-        data = {updatedAt: dateNow,...data}
+        data = { updatedAt: dateNow, ...data }
         const id = req.params.id
         try {
-            const status = await Favorite.update(data, { where: { favorite_id : id } })
+            const status = await Favorite.update(data, { where: { favorite_id: id } })
 
             if (!status) return res.status(404).send({ message: "favorite not found" })
 
@@ -48,7 +73,7 @@ module.exports = {
     async deleteOne(req, res) {
         const id = req.params.id
         try {
-            const status = await Favorite.destroy({ where: { favorite_id : id } })
+            const status = await Favorite.destroy({ where: { favorite_id: id } })
 
             if (!status) return res.status(404).send({ message: "favorite is not found" })
 

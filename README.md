@@ -225,6 +225,19 @@ response       : [
 <h3 id="makanan">makanan</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
+<h5>Search makanan</h5>
+
+```
+Content-type   : json
+GET            : api.nutripal.site/cari/makanan?keyword=xxx
+- xxx adalah query keyword
+body           : None
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+```
 
 <h5>get all pages</h5>
 
@@ -303,6 +316,22 @@ on error       : 404 favorite not found
 <h3>Favorite</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>
 
+<h5>search user favorite makanan</h5>
+
+```
+Content-type   : json
+Headers        : Authorization User Token
+GET            : api.nutripal.site/cari/favorite?keyword=xxx
+- xxx adalah keywrod
+body           : {pages,limit}
+response       : [
+  {
+    makanan_id
+    ...atr lainnya
+  }
+]
+```
+
 <h5>get all pages</h5>
 
 ```
@@ -330,23 +359,9 @@ response       : [
     makanan_id
     ...atr lainnya
   }
-
-
 ]
 ```
-<h5>Search makanan</h5>
 
-```
-Content-type   : json
-GET            : api.nutripal.site/cari/makanan?keyword=xxx
-- xxx adalah query keyword
-body           : None
-response       : [
-  {
-    makanan_id
-    ...atr lainnya
-  }
-```
   
 <h3 id="jadwal">Jadwal Praktik</h3>
 <a href="#content" style="text-decoration:none;"> top  </a>

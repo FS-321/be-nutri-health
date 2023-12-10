@@ -1,30 +1,37 @@
-const express = require('express')
-require('dotenv').config()
-const app = express()
-const cookieParser = require('cookie-parser')
-const cors = require('cors')
-const authenticator = require('./routing/authenticator')
-const bodyParser = require('body-parser')
-let rootRouter = null
-const rateLimit = require('express-rate-limit')
+const express = require("express");
+require("dotenv").config();
+const app = express();
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const authenticator = require("./routing/authenticator");
+const bodyParser = require("body-parser");
+let rootRouter = null;
+const rateLimit = require("express-rate-limit");
+const loginRoutes = require("./routing/routes/login");
+const dashboard = require("./controller/dashboard/dashboard");
+const registerRoutes = require("./routing/routes/register");
+const dokterRoutes = require("./routing/routes/dokter");
+const dashboardRoutes = require("./routing/routes/dashboard");
 
 const limiter = rateLimit({
-   windowMs : 5 * 1000,
-   max :100
-})
+  windowMs: 5 * 1000,
+  max: 100,
+});
 
-app.use(limiter)
-app.use(bodyParser.json())
-app.use(cookieParser(process.env.TOKENKEY))
+app.use(limiter);
+app.use(bodyParser.json());
+app.use(cookieParser(process.env.TOKENKEY));
 //{ credentials: true, origin: true }
-app.use(cors())
+app.use(cors());
+/* app.use("/", (req, res, next) => {
+  rootRouter = authenticator(app, req, res);
+  next();
+}); */
 
-app.use('/', (req, res, next) => {
-    rootRouter = authenticator(app, req, res)
-    next()
-})
-
-
+app.use(registerRoutes);
+app.use(loginRoutes);
+app.use(dashboardRoutes);
+app.use(dokterRoutes);
 // // Serve static files from the "public" directory
 // app.use(express.static('public'));
 
@@ -45,5 +52,5 @@ app.use('/', (req, res, next) => {
 // });
 
 app.listen(process.env.EXPRESS_PORT, (req, res) => {
-    console.log("server started")
-})
+  console.log("server started");
+});

@@ -1,16 +1,48 @@
-const express = require('express')
-const rekamMedisRoutesAdmin = express.Router()
-const rekamMedisRoutesUser = express.Router()
-const rekamMedis = require('../../controller/rekamMedis/rekamMedis')
+const express = require("express");
+const rekamMedis = require("../../controller/rekamMedis/rekamMedis");
+const { authenticateToken } = require("../../authentication/authentication");
+const userAuth = require("../user-auth");
+const adminAuth = require("../admin-auth");
+const determineRole = require("../determineRole");
+const rekamMedisRoutes = express.Router();
 
-rekamMedisRoutesUser.get('/rekam-medis',rekamMedis.getAllbyUser)
-rekamMedisRoutesUser.get('/rekam-medis/:id', rekamMedis.getOneUser)
+rekamMedisRoutes.get(
+  "/rekam-medis",
+  authenticateToken,
+  determineRole({
+    user: rekamMedis.getAllbyUser,
+    admin: rekamMedis.getAll,
+  }),
+);
+rekamMedisRoutes.get(
+  "/rekam-medis/:id",
+  authenticateToken,
+  determineRole({ user: rekamMedis.getOneUser, admin: rekamMedis.getOne }),
+);
 
-rekamMedisRoutesAdmin.get('/rekam-medis',rekamMedis.getAll)
-rekamMedisRoutesAdmin.get('/rekam-medis/:id', rekamMedis.getOne)
-rekamMedisRoutesAdmin.post('/rekam-medis',rekamMedis.create)
-rekamMedisRoutesAdmin.delete('/rekam-medis/:id', rekamMedis.deleteOne)
-rekamMedisRoutesAdmin.put('/rekam-medis/:id',rekamMedis.update)
-rekamMedisRoutesAdmin.get('/cari/rekam-medis', rekamMedis.search)
+rekamMedisRoutes.post(
+  "/rekam-medis",
+  authenticateToken,
+  adminAuth,
+  rekamMedis.create,
+);
+rekamMedisRoutes.delete(
+  "/rekam-medis/:id",
+  authenticateToken,
+  adminAuth,
+  rekamMedis.deleteOne,
+);
+rekamMedisRoutes.put(
+  "/rekam-medis/:id",
+  authenticateToken,
+  adminAuth,
+  rekamMedis.update,
+);
+rekamMedisRoutes.get(
+  "/cari/rekam-medis",
+  authenticateToken,
+  adminAuth,
+  rekamMedis.search,
+);
 
-module.exports = {rekamMedisRoutesUser, rekamMedisRoutesAdmin}
+module.exports = rekamMedis;

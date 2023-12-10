@@ -1,16 +1,30 @@
-const express = require('express')
-const poliklinikRoutes= express.Router()
-const poliklinikRoutesAdmin = express.Router()
-const poliklinik = require('../../controller/poliklinik/poliklinik')
+const express = require("express");
+const poliklinikRoutes = express.Router();
+const poliklinik = require("../../controller/poliklinik/poliklinik");
+const { authenticateToken } = require("../../authentication/authentication");
+const adminAuth = require("../admin-auth");
 
-poliklinikRoutesAdmin.get('/poliklinik',poliklinik.getAll)
-poliklinikRoutesAdmin.get('/poliklinik/:id',poliklinik.getOne)
-poliklinikRoutesAdmin.post('/poliklinik', poliklinik.create)
-poliklinikRoutesAdmin.delete('/poliklinik/:id', poliklinik.deleteOne)
-poliklinikRoutesAdmin.put('/poliklinik/:id', poliklinik.update)
-poliklinikRoutesAdmin.get('/cari/poliklinik', poliklinik.search)
+poliklinikRoutes.get("/poliklinik", poliklinik.getAll);
+poliklinikRoutes.get("/poliklinik/:id", poliklinik.getOne);
+poliklinikRoutes.post(
+  "/poliklinik",
+  authenticateToken,
+  adminAuth,
+  poliklinik.create,
+);
+poliklinikRoutes.delete(
+  "/poliklinik/:id",
+  authenticateToken,
+  adminAuth,
+  poliklinik.deleteOne,
+);
+poliklinikRoutes.put(
+  "/poliklinik/:id",
+  authenticateToken,
+  adminAuth,
+  poliklinik.update,
+);
+poliklinikRoutes.get("/cari/poliklinik", poliklinik.search);
 
-poliklinikRoutes.get('/cari/poliklinik', poliklinik.search)
-poliklinikRoutes.get('/poliklinik',poliklinik.getAll)
-poliklinikRoutes.get('/poliklinik/:id',poliklinik.getOne)
-module.exports = {poliklinikRoutes, poliklinikRoutesAdmin}
+module.exports = poliklinikRoutes;
+

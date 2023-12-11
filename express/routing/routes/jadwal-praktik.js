@@ -7,10 +7,10 @@ const { authenticateToken } = require("../../authentication/authentication");
 jadwalPraktikRoutes.get("/jadwal-praktik", jadwalPraktik.getAll);
 jadwalPraktikRoutes.get("/jadwal-praktik/:id", jadwalPraktik.getOne);
 jadwalPraktikRoutes.post(
-  "/jadwal-praktik/:id",
+  "/jadwal-praktik",
   authenticateToken,
   adminAuth,
-  jadwalPraktik.update,
+  jadwalPraktik.create,
 );
 jadwalPraktikRoutes.delete(
   "/jadwal-praktik/:id",
@@ -18,6 +18,11 @@ jadwalPraktikRoutes.delete(
   adminAuth,
   jadwalPraktik.deleteOne,
 );
+jadwalPraktikRoutes.put(
+  "/jadwal-praktik/:id",
+  authenticateToken,
+  adminAuth,
+  jadwalPraktik.update,
+);
 
 module.exports = jadwalPraktikRoutes;
-

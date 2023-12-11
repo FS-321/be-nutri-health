@@ -8,6 +8,7 @@ module.exports = (req, res, next) => {
   try {
     const decodedToken = jwt.verify(token, process.env.TOKENKEY);
     if (decodedToken.role === "admin") next();
+    else return res.status(403).send({ message: "Admin only authorization" });
   } catch (e) {
     console.log(e.message);
     return req

@@ -12,6 +12,12 @@ const dashboard = require("./controller/dashboard/dashboard");
 const registerRoutes = require("./routing/routes/register");
 const dokterRoutes = require("./routing/routes/dokter");
 const dashboardRoutes = require("./routing/routes/dashboard");
+const makananRoutes = require("./routing/routes/makanan");
+const layananRoutes = require("./routing/routes/layanan");
+const jadwalPraktikRoutes = require("./routing/routes/jadwal-praktik");
+const favoriteRouter = require("./routing/routes/favorite");
+const poliklinikRoutes = require("./routing/routes/poliklinik");
+const rekamMedisRoutes = require("./routing/routes/rekamMedis");
 
 const limiter = rateLimit({
   windowMs: 5 * 1000,
@@ -32,6 +38,12 @@ app.use(registerRoutes);
 app.use(loginRoutes);
 app.use(dashboardRoutes);
 app.use(dokterRoutes);
+app.use(makananRoutes);
+app.use(layananRoutes);
+app.use(jadwalPraktikRoutes);
+app.use(favoriteRouter);
+app.use(poliklinikRoutes);
+app.use(rekamMedisRoutes);
 // // Serve static files from the "public" directory
 // app.use(express.static('public'));
 

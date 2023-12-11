@@ -6,6 +6,7 @@ const adminAuth = require("../admin-auth");
 
 poliklinikRoutes.get("/poliklinik", poliklinik.getAll);
 poliklinikRoutes.get("/poliklinik/:id", poliklinik.getOne);
+poliklinikRoutes.get("/cari/poliklinik", poliklinik.search);
 poliklinikRoutes.post(
   "/poliklinik",
   authenticateToken,
@@ -24,7 +25,5 @@ poliklinikRoutes.put(
   adminAuth,
   poliklinik.update,
 );
-poliklinikRoutes.get("/cari/poliklinik", poliklinik.search);
 
 module.exports = poliklinikRoutes;
-

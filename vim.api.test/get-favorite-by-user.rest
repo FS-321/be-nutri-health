@@ -1,0 +1,8 @@
+http://localhost:3000
+
+# user 1
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxIiwiaWF0IjoxNzAyMjYwMTY0LCJleHAiOjE3MDI1MTkzNjR9.Pw4WqPV6ETxx4pHJOmJGzZYlQWJMuE_TMaNvr3cd4o0
+
+GET /favorite?pages=2&limit=2
+GEt /favorite/4
+GET /cari/favorite?pages=1&limit=2&keyword=a

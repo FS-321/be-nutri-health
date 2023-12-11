@@ -45,4 +45,4 @@ rekamMedisRoutes.get(
   rekamMedis.search,
 );
 
-module.exports = rekamMedis;
+module.exports = rekamMedisRoutes;

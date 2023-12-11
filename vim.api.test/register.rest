@@ -1,0 +1,9 @@
+http://localhost:3000
+POST /register
+{
+	"nama_depan":"depan testing",
+  "nama_belakang":"belakang_test",
+  "email":"ttfdfdddsdsdng@gmail.com",
+  "password":"testing123",
+  "tanggal_lahir":"2001-03-16"
+}

@@ -1,0 +1,8 @@
+http://localhost:3000
+
+# admin
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+#user
+# Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIyMDIzMTIxMDExMTUyNDE4MyIsImlhdCI6MTcwMjIwODI3MywiZXhwIjoxNzAyNDY3NDczfQ.N8Jjz0s_2Oc029TNAC5Pu1JeRjxTXgTuQY1WvlIW3tU
+Content-Type : Application/json
+GET /dashboard

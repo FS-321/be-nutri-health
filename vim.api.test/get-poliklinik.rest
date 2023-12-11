@@ -1,0 +1,5 @@
+http://localhost:3000
+
+GET /poliklinik?pages=2&limit=2
+GET /poliklinik/10
+GET /cari/poliklinik?pages=1&limit=5&keyword=jantu

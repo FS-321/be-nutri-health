@@ -1,0 +1,8 @@
+
+http://localhost:3000
+
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+PUT /layanan/11
+{
+	"nama_layanan":"coba update layanan"
+}

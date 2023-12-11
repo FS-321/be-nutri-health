@@ -1,0 +1,13 @@
+
+http://localhost:3000
+
+# admin
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+PUT /rekam-medis/18
+{
+	"tanggal_periksa":"2023-12-5",
+	"keluhan":"mencret",
+	"diagnosa":"Migrain",
+	"pasien_id":1,
+	"dokter_id":1
+}

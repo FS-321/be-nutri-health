@@ -1,0 +1,13 @@
+
+http://localhost:3000
+
+# admin
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+GET /rekam-medis?pages=2&limit=5
+GET /cari/rekam-medis?pages=1&limit=1&keyword=cep
+
+
+# user - 1
+# Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxIiwiaWF0IjoxNzAyMjYwMTY0LCJleHAiOjE3MDI1MTkzNjR9.Pw4WqPV6ETxx4pHJOmJGzZYlQWJMuE_TMaNvr3cd4o0
+# GET /rekam-medis?pages=2&limit=5
+

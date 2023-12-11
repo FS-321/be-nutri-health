@@ -214,7 +214,7 @@ on error       : 404 dokter not found
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/cari/dokter?keword=xxxxx&pages&limit
+GET            : api.nutripal.site/cari/dokter?keyword=xxxxx&pages&limit
 - xxxx = adalah kata kunci
 body           : None
 response       : [
@@ -247,7 +247,7 @@ response       : [
 ```
 Content-type   : json
 GET            : api.nutripal.site/makanan?pages&limit
-body           : 
+body           : None
 response       : [
   {
     makanan_id
@@ -513,7 +513,8 @@ body           : {
 }
 response       : 
   {
-    data_rekam_id
+    data_r
+    ekam_id
     ...atr lainnya
   }
 on error      : 401 not login or not have access

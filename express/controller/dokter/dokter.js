@@ -3,12 +3,11 @@ const { Dokter, JadwalPraktik } = require("../../../models");
 
 module.exports = {
   async search(req, res) {
-    let pages = +req.query.pages || 1;
-    let limit = +req.query.limit || 10;
+    let pages = parseInt(req.query.pages) || 1;
+    let limit = parseInt(req.query.limit) || 10;
 
     let offset = (pages - 1) * limit;
     const keyword = req.query.keyword.toLowerCase();
-    console.log(keyword);
     try {
       const dokter = await Dokter.findAll({
         limit,
@@ -124,4 +123,3 @@ module.exports = {
     }
   },
 };
-

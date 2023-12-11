@@ -295,7 +295,7 @@ on error       : 404 favorite not found
 
 ```
 Content-type   : json
-PUT            : api.nutripal.site/makanan/:id_makanan/
+PUT            : api.nutripal.site/makanan/:id_makanan
 Headers        : Authorization Admin Token
 body           : {
     nama_makanan : str
@@ -418,14 +418,15 @@ on error       : 404 jadwal not found
 Content-type   : json
 Headers        : Authorization Admin Token
 PUT            : api.nutripal.site/jadwal-praktik/:id
-body           : None
-response       : 
+body           :
   {
     hari : string
     mulai : string (hh:mm:ss) atau (hh:mm)
     akhir : string (hh:mm:ss) atau (hh:mm)
     dokter_id : number
   }
+response       : successful message
+
 on error      : 404 jadwal not found
 ```
 
@@ -528,8 +529,8 @@ Content-type   : json
 Headers        : Authorization Admin
 PUT            : api.nutripal.site/rekam-medis/:id
 body           : {
-  user_id : string,
   dokter_id : number,
+  pasien_id : string
   tanggal_periksa:date,
   keluhan :string,
   diagnosa :string,  
@@ -597,11 +598,10 @@ response       :
 ```
 Content-type   : json
 Headers        : Authorization user
-PUT            : api.nutripal.site/user
+PUT            : api.nutripal.site/user/:id
 body           : 
   {
-    user_id : string,
-    ...attr lainnya user
+    ...attr user yg akan diubah
   }
 
 response       : succesfull message
@@ -690,11 +690,10 @@ response       :
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/layanan/:id:
+PUT            : api.nutripal.site/layanan/:id
 body           : 
   {
-    layanan_id : number,
-    ...attr lainnya user
+    ...attr layanan yg akan diubah
   }
 
 response       : succesfull message

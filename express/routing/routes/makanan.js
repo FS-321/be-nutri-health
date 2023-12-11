@@ -1,21 +1,35 @@
-const express = require('express')
-const makananRoutesAdmin = express.Router()
-const makananRoutes = express.Router()
-const makananRoutesUser = express.Router()
-const makanan = require('../../controller/makanan/makanan')
+const express = require("express");
+const makananRoutes = express.Router();
+const makanan = require("../../controller/makanan/makanan");
+const { authenticateToken } = require("../../authentication/authentication");
+const userAuth = require("../user-auth");
+const adminAuth = require("../admin-auth");
 
+makananRoutes.get("/cari/makanan", makanan.search);
+makananRoutes.get("/makanan", makanan.getAll);
+makananRoutes.get("/makanan/:id", makanan.getOne);
+// user
+makananRoutes.post(
+  "/makanan/:id/favorite",
+  authenticateToken,
+  userAuth,
+  makanan.addTofavorit,
+);
+makananRoutes.delete(
+  "/makanan/:id/favorite",
+  authenticateToken,
+  userAuth,
+  makanan.removeFavorit,
+);
+// admin
+makananRoutes.post("/makanan", authenticateToken, adminAuth, makanan.create);
+makananRoutes.put("/makanan/:id", authenticateToken, adminAuth, makanan.update);
+makananRoutes.delete(
+  "/makanan/:id",
+  authenticateToken,
+  adminAuth,
+  makanan.deleteOne,
+);
 
-makananRoutes.get('/cari/makanan', makanan.search)
-makananRoutes.get('/makanan', makanan.getAll)
-makananRoutes.get('/makanan/:id', makanan.getOne)
+module.exports = makananRoutes;
 
-makananRoutesUser.use(makananRoutes)
-makananRoutesUser.post('/makanan/:id/favorite', makanan.addTofavorit)
-makananRoutesUser.delete('/makanan/:id/favorite', makanan.removeFavorit)
-
-makananRoutesAdmin.use(makananRoutes)
-makananRoutesAdmin.post('/makanan', makanan.create)
-makananRoutesAdmin.put('/makanan/:id', makanan.update)
-makananRoutesAdmin.delete('/makanan/:id', makanan.deleteOne)
-
-module.exports = { makananRoutes, makananRoutesAdmin, makananRoutesUser }

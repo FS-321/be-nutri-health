@@ -1,0 +1,8 @@
+http://localhost:3000
+# semua 1 page 5 dokter
+Content-Type = application/json
+Accept = application/json
+GET /dokter?pages=2&limit=5|
+
+GET /dokter/3
+ 

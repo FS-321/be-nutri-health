@@ -1,0 +1,13 @@
+http://localhost:3000
+
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+POST /dokter 
+{
+	"nama_depan": "dr. Fajar",
+    "nama_belakang": "Baskoro",
+    "email": "faji@example.com",
+    "no_telp": "0800000010",
+    "spesialis": "Saraf",
+    "foto_dokter": "http://example.com/path/to/fajar_image.jpg",
+	"poli_id": 5
+}

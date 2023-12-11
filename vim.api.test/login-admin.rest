@@ -1,0 +1,7 @@
+http://localhost:3000
+POST /login
+{
+	"email":"john.doe@example.com",
+	"password":"456"
+}
+

@@ -1,9 +1,22 @@
-const express = require('express')
-const favoriteRouter = express.Router()
-const favorite = require('../../controller/favorite/favotite')
+const express = require("express");
+const favoriteRouter = express.Router();
+const favorite = require("../../controller/favorite/favotite");
+const { authenticateToken } = require("../../authentication/authentication");
+const userAuth = require("../user-auth");
 
-favoriteRouter.get('/favorite', favorite.getAll)
-favoriteRouter.get('/favorite/:id', favorite.getOne)
-favoriteRouter.get('/cari/favorite',favorite.search)
+favoriteRouter.get("/favorite", authenticateToken, userAuth, favorite.getAll);
+favoriteRouter.get(
+  "/favorite/:id",
+  authenticateToken,
+  userAuth,
+  favorite.getOne,
+);
+favoriteRouter.get(
+  "/cari/favorite",
+  authenticateToken,
+  userAuth,
+  favorite.search,
+);
 
-module.exports = favoriteRouter
+module.exports = favoriteRouter;
+

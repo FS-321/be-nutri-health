@@ -1,14 +1,28 @@
-const express = require('express')
-const jadwalPraktikRoutesAdmin = express.Router()
-const jadwalPraktikRoutes = express.Router()
-const jadwalPraktik = require('../../controller/jadwal_praktik/jadwal_praktik')
+const express = require("express");
+const jadwalPraktikRoutes = express.Router();
+const jadwalPraktik = require("../../controller/jadwal_praktik/jadwal_praktik");
+const adminAuth = require("../admin-auth");
+const { authenticateToken } = require("../../authentication/authentication");
 
-jadwalPraktikRoutesAdmin.get('/jadwal-praktik', jadwalPraktik.getAll )
-jadwalPraktikRoutesAdmin.get('/jadwal-praktik/:id', jadwalPraktik.getOne )
-jadwalPraktikRoutesAdmin.post('/jadwal-praktik/:id', jadwalPraktik.update )
-jadwalPraktikRoutesAdmin.delete('/jadwal-praktik/:id', jadwalPraktik.deleteOne )
+jadwalPraktikRoutes.get("/jadwal-praktik", jadwalPraktik.getAll);
+jadwalPraktikRoutes.get("/jadwal-praktik/:id", jadwalPraktik.getOne);
+jadwalPraktikRoutes.post(
+  "/jadwal-praktik",
+  authenticateToken,
+  adminAuth,
+  jadwalPraktik.create,
+);
+jadwalPraktikRoutes.delete(
+  "/jadwal-praktik/:id",
+  authenticateToken,
+  adminAuth,
+  jadwalPraktik.deleteOne,
+);
+jadwalPraktikRoutes.put(
+  "/jadwal-praktik/:id",
+  authenticateToken,
+  adminAuth,
+  jadwalPraktik.update,
+);
 
-jadwalPraktikRoutes.get('/jadwal-praktik', jadwalPraktik.getAll )
-jadwalPraktikRoutes.get('/jadwal-praktik/:id', jadwalPraktik.getOne )
-
-module.exports  = { jadwalPraktikRoutesAdmin, jadwalPraktikRoutes}
+module.exports = jadwalPraktikRoutes;

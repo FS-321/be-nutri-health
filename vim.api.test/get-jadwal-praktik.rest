@@ -1,0 +1,4 @@
+http://localhost:3000
+
+GET /jadwal-praktik?pages=1&limit=5
+GET /jadwal-praktik/2

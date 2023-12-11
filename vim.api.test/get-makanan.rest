@@ -1,0 +1,8 @@
+http://localhost:3000
+
+GET /makanan?limit=4
+
+GET /makanan/1
+
+GET /cari/makanan?keyword=goreng
+

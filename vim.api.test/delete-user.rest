@@ -1,0 +1,9 @@
+http://localhost:3000
+
+# admin
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+# user
+# Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIyMDIzMTIxMDExMTUyNDE4MyIsImlhdCI6MTcwMjI1Njc3NCwiZXhwIjoxNzAyNTE1OTc0fQ.7ePulmRhhb3RL80Xyk0PPAXF5d-2xkEHalIasy7W4Nw
+
+
+DELETE /user/9

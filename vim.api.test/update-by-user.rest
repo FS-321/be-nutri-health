@@ -1,0 +1,18 @@
+
+http://localhost:3000
+
+# admin
+# Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiMiIsImlhdCI6MTcwMjIxNjA0MCwiZXhwIjoxNzAyNDc1MjQwfQ.tdKQ7cPVWQeuE_G_QhjSPnEousNTXs9OXo8iq7_ZhK8
+#
+# PUT /user/3
+# {
+# 	"nama_depan":"supri"
+# }
+
+# user 1
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIyMDIzMTIxMDExMTUyNDE4MyIsImlhdCI6MTcwMjI1Njc3NCwiZXhwIjoxNzAyNTE1OTc0fQ.7ePulmRhhb3RL80Xyk0PPAXF5d-2xkEHalIasy7W4Nw
+
+PUT /user/1
+{
+	"nama_depan":"asep"
+}

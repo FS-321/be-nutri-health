@@ -4,8 +4,8 @@ const getDecodedToken = require("../../authentication/getDecodedToken");
 
 module.exports = {
   async search(req, res) {
-    let pages = +req.query.pages || 1;
-    let limit = +req.query.limit || 10;
+    let pages = parseInt(req.query.pages) || 1;
+    let limit = parseInt(req.query.limit) || 10;
 
     let offset = (pages - 1) * limit;
     const keyword = req.query.keyword.toLowerCase();
@@ -43,8 +43,8 @@ module.exports = {
   },
 
   async getAll(req, res) {
-    const page = req.body.pages || 1;
-    const pageSize = req.body.limit || 10;
+    const page = parseInt(req.query.pages) || 1;
+    const pageSize = parseInt(req.query.limit) || 10;
     const offset = (page - 1) * pageSize;
     try {
       const user = await User.findAll({
@@ -109,7 +109,7 @@ module.exports = {
       const status = await User.destroy({ where: { user_id: id } });
 
       if (!status)
-        return res.status(404).send({ message: "doctor is not found" });
+        return res.status(404).send({ message: "user is not found" });
 
       return res.status(200).send({ message: "delete successful" });
     } catch (e) {
@@ -119,4 +119,3 @@ module.exports = {
     }
   },
 };
-

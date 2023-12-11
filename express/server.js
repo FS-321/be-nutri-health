@@ -17,6 +17,7 @@ const jadwalPraktikRoutes = require("./routing/routes/jadwal-praktik");
 const favoriteRouter = require("./routing/routes/favorite");
 const poliklinikRoutes = require("./routing/routes/poliklinik");
 const rekamMedisRoutes = require("./routing/routes/rekamMedis");
+const userRoutes = require("./routing/routes/user");
 
 const limiter = rateLimit({
   windowMs: 5 * 1000,
@@ -39,6 +40,7 @@ app.use(jadwalPraktikRoutes);
 app.use(favoriteRouter);
 app.use(poliklinikRoutes);
 app.use(rekamMedisRoutes);
+app.use(userRoutes);
 // // Serve static files from the "public" directory
 // app.use(express.static('public'));
 

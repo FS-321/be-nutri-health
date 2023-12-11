@@ -16,6 +16,9 @@
 
 ```
 on expired or invalid token : 401 token either modified or invalid message, redirect to homepage
+admin account
+email : "john.doe@example.com"
+password : "456"
 ```
 
 <h3 id="login">Login</h3> 

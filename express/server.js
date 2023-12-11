@@ -3,7 +3,6 @@ require("dotenv").config();
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const authenticator = require("./routing/authenticator");
 const bodyParser = require("body-parser");
 let rootRouter = null;
 const rateLimit = require("express-rate-limit");
@@ -29,10 +28,6 @@ app.use(bodyParser.json());
 app.use(cookieParser(process.env.TOKENKEY));
 //{ credentials: true, origin: true }
 app.use(cors());
-/* app.use("/", (req, res, next) => {
-  rootRouter = authenticator(app, req, res);
-  next();
-}); */
 
 app.use(registerRoutes);
 app.use(loginRoutes);

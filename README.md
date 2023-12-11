@@ -53,8 +53,8 @@ on error       : 409 email already registered
 
 ```
 Content-type   : json
-GET            : api.nutripal.site/poliklinik
-body           : {pages,limit}
+GET            : api.nutripal.site/poliklinik?pages&limit
+body           : None
 response       : [
   {
     poli_id
@@ -113,7 +113,7 @@ on error       : 404 poliklinik not found
 
 ```
 Content-type   : json
-GET            : api.nutripal.site/cari/poliklinik?keyword=xxx
+GET            : api.nutripal.site/cari/poliklinik?keyword=xxx&pages&limit
 - xxx adalah query keyword
 body           : None
 response       : [
@@ -132,8 +132,8 @@ response       : [
 
 ```
 Content-type   : json
-GET            : api.nutripal.site/dokter
-body           : {pages,limit}
+GET            : api.nutripal.site/dokter?pages&limit
+body           : None
 response       : [
   {
     dokter_id
@@ -211,7 +211,7 @@ on error       : 404 dokter not found
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/cari/dokter?keword=xxxxx
+GET            : api.nutripal.site/cari/dokter?keword=xxxxx&pages&limit
 - xxxx = adalah kata kunci
 body           : None
 response       : [
@@ -229,7 +229,7 @@ response       : [
 
 ```
 Content-type   : json
-GET            : api.nutripal.site/cari/makanan?keyword=xxx
+GET            : api.nutripal.site/cari/makanan?keyword=xxx&pages&limit
 - xxx adalah query keyword
 body           : None
 response       : [
@@ -243,8 +243,8 @@ response       : [
 
 ```
 Content-type   : json
-GET            : api.nutripal.site/makanan
-body           : {pages,limit}
+GET            : api.nutripal.site/makanan?pages&limit
+body           : 
 response       : [
   {
     makanan_id
@@ -321,7 +321,7 @@ on error       : 404 favorite not found
 ```
 Content-type   : json
 Headers        : Authorization User Token
-GET            : api.nutripal.site/cari/favorite?keyword=xxx
+GET            : api.nutripal.site/cari/favorite?keyword=xxx&pages&limit
 - xxx adalah keywrod
 body           : None
 response       : [
@@ -337,8 +337,8 @@ response       : [
 ```
 Content-type   : json
 Headers        : Authorization User Token
-GET            : api.nutripal.site/favorite
-body           : {pages,limit}
+GET            : api.nutripal.site/favorite?pages&limit
+body           : None
 response       : [
   {
     makanan_id
@@ -370,6 +370,7 @@ response       : [
 
 ```
 Content-type   : json
+GET            : api.nutripal.site/jadwal-praktik?pages&limit
 body           : {pages,limit}
 response       : [
   {
@@ -451,9 +452,9 @@ on error      : None
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/cari/rekam-medis?keyword=xxx
+GET            : api.nutripal.site/cari/rekam-medis?keyword=xxx&pages&limit
 -xxx adalah query keyword
-body           : {pages,limit}
+body           : None
 response       : [
   {
     data_rekam_id
@@ -468,8 +469,8 @@ on error      : 401 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization User/Admin
-GET            : api.nutripal.site/rekam-medis
-body           : {pages,limit}
+GET            : api.nutripal.site/rekam-medis?pages&limit
+body           : None
 response       : [
   {
     data_rekam_id
@@ -541,7 +542,7 @@ on error      : 403 not login or not have access
 ```
 Content-type   : json
 Headers        : Authorization Admin
-PUT            : api.nutripal.site/dashboard/:
+PUT            : api.nutripal.site/dashboard
 body           : None
 response       : 
 {
@@ -562,8 +563,8 @@ response       :
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/user/
-body           : {pages,limit}
+GET            : api.nutripal.site/user?pages&limit
+body           : None
 response       : [
   {
     user_id : string,
@@ -634,7 +635,7 @@ on error       : 404 User not found
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/cari/user?keword=xxxxx
+GET            : api.nutripal.site/cari/user?keword=xxxxx&pages&limit
 - xxxx = adalah kata kunci
 body           : None
 response       : [
@@ -655,8 +656,8 @@ on error       : 404 User not found
 ```
 Content-type   : json
 Headers        : None
-GET            : api.nutripal.site/layanan/
-body           : {pages,limit}
+GET            : api.nutripal.site/layanan?pages&limit
+body           : None
 response       : [
   {
     layanan_id : number,
@@ -707,12 +708,12 @@ response       : succesfull message
 on error       : 404 User not found
 ```
 
-<h5>Search user/patient</h5>
+<h5>Search layanan</h5>
 
 ```
 Content-type   : json
 Headers        : Authorization Admin
-GET            : api.nutripal.site/cari/layanan?keword=xxxxx
+GET            : api.nutripal.site/cari/layanan?keword=xxxxx&pages&limit
 - xxxx = adalah kata kunci
 body           : None
 response       : [
